@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Testnet rules | Transit Fabric testnet 611</title><link rel="stylesheet" href="style.css"><link rel="icon" type="image/png" href="logo.png"><meta property="og:image" content="https://transitfabric.xyz/logo.png"></head><body>
+<header><a class="brand" href="index.html">Transit Fabric releases</a>
+<nav><a href="index.html">Home</a><a href="quickstart.html">Quick start</a><a href="known-limits.html">Known limits</a><a href="bounty.html">Bounty</a><a href="redteam/index.html">Red team</a><a href="claim.html">Claim credit</a><a href="leaderboard.html">Leaderboard</a><a href="testnet-rules.html">Testnet rules</a></nav></header>
+<main>
+<h1 id="testnet-rewards-proposed-rules">Testnet rewards: proposed
+rules</h1>
+<blockquote>
+<p><strong>Proposed, open for feedback until Tuesday 17 November 2026,
+12:00 UTC.</strong> The rules become final then, and we publish the
+final version here with a list of what changed. If substantive feedback
+arrives late, we may extend the deadline and say so here.</p>
+<p><strong>How to give feedback:</strong></p>
+<ul>
+<li>open a <a
+href="https://github.com/transitfabric/releases/issues/new?template=rules-feedback.yml">Testnet
+rules feedback</a> Issue; or</li>
+<li>upload a note to the <a
+href="https://submit.transitfabric.xyz">findings sandbox</a> if you have
+no GitHub account.</li>
+</ul>
+<p>Point at the section you're commenting on. Numbers marked
+<em>proposed value</em> are the ones we most want views on.</p>
+</blockquote>
+<p><strong>Proposed rules, version 2.</strong> This page will be the
+only place that says what testnet work pays. Other pages link here and
+don't restate it.</p>
+<h2 id="in-short">In short</h2>
+<ul>
+<li><strong>What you get.</strong> Testnet work earns credit, and the
+credit converts to Transit Fabric <strong>alpha on mainnet</strong>. It
+is not paid in TAO, in dollars or in testnet alpha. Testnet alpha has no
+value.</li>
+<li><strong>How much.</strong> It's meant to be modest: an average
+active node operator's share is worth about <strong>one mainnet
+registration</strong>, so you can start on mainnet.</li>
+<li><strong>What it pays for.</strong> It pays for what the testnet has
+too little of: honest, live sites in new networks and environments, such
+as a router at home or a node behind NAT. Capacity above a small floor
+earns nothing extra.</li>
+<li><strong>Our commitment.</strong> This is a commitment. Its only
+condition is that mainnet launches. If mainnet doesn't launch, nothing
+is owed, and the ledger stays public.</li>
+<li><strong>When it counts.</strong>
+<ul>
+<li>Credit counts from the <strong>tester.2 release (12 November 2026)
+until mainnet starts</strong>.</li>
+<li>Enrolment never closes. Joining late only costs you the weeks you
+missed.</li>
+</ul></li>
+</ul>
+<h2 id="the-pool">The pool</h2>
+<ul>
+<li><strong>Size.</strong> The pool is two mainnet registrations for
+every eligible node operator, so the node half averages one registration
+each.
+<ul>
+<li>It is capped at the alpha the subnet owner receives in mainnet's
+first 14 days.</li>
+<li>If the formula comes to more than the cap, every share is scaled
+down by the same factor.</li>
+</ul></li>
+<li><strong>What "one registration" is worth.</strong> It's the subnet's
+mainnet registration price in TAO, including the part the chain locks as
+collateral, converted to alpha at the subnet's price.
+<ul>
+<li>Both numbers are the median over the first 24 hours after mainnet
+starts, so the rush of registrations at launch doesn't set the
+price.</li>
+</ul></li>
+<li><strong>Eligible node operator.</strong> A claimant who held base
+(below) on at least one site for at least one week by mainnet
+start.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Share of the pool</th>
+<th>Pays for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nodes</td>
+<td>50%</td>
+<td>Sites that stay up, declare honestly and are peered, weighted toward
+the networks and environments the testnet lacks</td>
+</tr>
+<tr>
+<td>Findings</td>
+<td>30%</td>
+<td>Valid findings, by the tiers in the <a href="bounty.html">bounty
+page</a></td>
+</tr>
+<tr>
+<td>Solvers</td>
+<td>10%</td>
+<td>Route tables that beat the reference solver</td>
+</tr>
+<tr>
+<td>Docs and onboarding</td>
+<td>10%</td>
+<td>Merged fixes, and first onboarding reports from a new
+environment</td>
+</tr>
+</tbody>
+</table>
+<p>A track's unspent share moves to the node track.</p>
+<h2 id="who-can-earn">Who can earn</h2>
+<ul>
+<li><strong>Claimants.</strong> A claimant is one person or team,
+registered once on the <a href="claim.html">claim page</a>. You list
+your testnet hotkeys by signing one message with each. Signing a hotkey
+on the claim page is coming; your points count from tester.2 whenever
+you add it. Rewards go to your claim address.</li>
+<li><strong>At most 3 UIDs per claimant.</strong> For example, one for a
+single node, one for an OpenWrt router and one for a fleet. One UID can
+hold all three. A fourth UID, or a UID nobody has claimed, earns
+nothing. Testnet has only 128 seats.</li>
+<li><strong>Credit follows the claimant, not the UID.</strong> Losing a
+UID to pruning, re-registering or changing hotkeys never erases points
+you've earned.</li>
+<li><strong>Who doesn't earn.</strong>
+<ul>
+<li>Nodes run by the team, or by anyone the project pays, earn nothing
+from the pool.</li>
+<li>Anyone with access to the project's private source can't earn from
+the findings track.</li>
+<li>Someone paid for a specific piece of work, such as a commissioned
+audit, earns node points like any operator. The paid work itself isn't a
+finding.</li>
+</ul></li>
+</ul>
+<h2 id="node-points">Node points</h2>
+<p>Points are counted per <strong>site</strong> each week (140 windows),
+then summed per claimant. A site is a group of one claimant's nodes
+whose probed endpoints share an IPv4 /24. Every input comes from what
+validators already commit each window.</p>
+<h3 id="base-10-points-per-site-a-week">Base: 10 points per site a
+week</h3>
+<p>A site holds base for the week when all four of these hold:</p>
+<ul>
+<li><strong>Uptime.</strong> It was up in at least 90% of the week's
+non-void windows. From 50% to 90%, it earns 5 points instead.</li>
+<li><strong>A capacity test.</strong> It passed at least one capacity
+test, verified at 20 Mb/s or more (<em>proposed value</em>), or 5 Mb/s
+for a router or a node behind NAT.
+<ul>
+<li>A site counts only with a live binding and consent, a fresh signed
+declaration, and a BGP session to another UID's node.</li>
+</ul></li>
+<li><strong>Honest declarations.</strong> In no window was its verified
+capacity under half of what it declared.</li>
+<li><strong>A current release.</strong> It ran the current release, or
+the previous one for at most 48 hours after a new one.</li>
+</ul>
+<h3 id="diversity-up-to-6-points-per-site">Diversity: up to 6 points per
+site</h3>
+<pre><code>D = 6 / n_asn</code></pre>
+<ul>
+<li><code>n_asn</code> counts all sites holding base that week in the
+same origin ASN, the team's included.</li>
+<li>The only site in its ASN earns 6. The tenth site at one provider
+earns 0.6.</li>
+<li>The formula needs no table, however large the network grows.</li>
+<li><strong>Country isn't used yet.</strong> Validators can't commit a
+node's country today, and a location a node declares can be faked for
+free.
+<ul>
+<li>A country term, <code>6 / n_country</code>, comes only with a
+measured location signal under its own ADR.</li>
+<li>Like any change, it is announced 7 days before it applies.</li>
+</ul></li>
+</ul>
+<h3
+id="environment-one-bonus-per-site-the-highest-that-applies">Environment:
+one bonus per site, the highest that applies</h3>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenWrt router on the supported image</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Node on a home or mobile line behind NAT</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Another platform we list as wanted (for example an ARM board or a
+new OpenWrt target)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Datacenter VM</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>How the bonus scales.</strong> The first 10 sites
+(<em>proposed value</em>) of a kind in a week get the bonus in full.
+Beyond that, each gets it scaled by 10 / n.</li>
+<li><strong>Evidence for a router:</strong>
+<ul>
+<li>the <code>ubus call system board</code> output;</li>
+<li>a photo showing the claim ID;</li>
+<li>one live check on request.</li>
+</ul></li>
+<li><strong>NAT and a home line</strong> are read from the validators'
+own data: the node dialled out, and the ASN's type.</li>
+</ul>
+<h3 id="roles-added-to-the-site">Roles: added to the site</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Points a week</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open peer</td>
+<td>4</td>
+<td>Peered with nodes of at least 2 other claimants during their first
+14 days</td>
+</tr>
+<tr>
+<td>Fast upgrade</td>
+<td>3</td>
+<td>On a new release within 24 hours of its announcement</td>
+</tr>
+</tbody>
+</table>
+<p>A data-server role comes with phase F. Solvers have their own
+track.</p>
+<h3 id="fleet-per-claimant">Fleet: per claimant</h3>
+<table>
+<thead>
+<tr>
+<th>Fleet</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One hotkey binding 3 or more sites in at least 2 ASNs, all holding
+base</td>
+<td>10 a week</td>
+</tr>
+<tr>
+<td>The first working binding of more than 7 nodes under one hotkey</td>
+<td>30, once</td>
+</tr>
+</tbody>
+</table>
+<h3 id="duplication">Duplication</h3>
+<ul>
+<li><p><strong>One /24 counts once.</strong> A second node in the same
+/24 earns nothing, whichever UID or claimant it belongs to.</p></li>
+<li><p><strong>Points are per site, not per key.</strong> Three UIDs on
+one machine earn what one UID earns.</p></li>
+<li><p><strong>Limits per claimant.</strong> One claimant earns base on
+at most:</p>
+<ul>
+<li>one single-node site;</li>
+<li>one router site;</li>
+<li>5 fleet sites (<em>proposed value</em>);</li>
+<li>and no more than 2 sites in one ASN.</li>
+</ul>
+<p>Further sites earn nothing.</p></li>
+<li><p><strong>Merged claims.</strong> Claims found to have one operator
+behind them are merged, and the week in which that was hidden earns
+nothing.</p></li>
+<li><p><strong>Idle UIDs.</strong> A UID with no site holding base for
+14 days is listed as idle, and we ask its claimant to release it. While
+it is listed, the claimant earns no fleet points.</p></li>
+</ul>
+<h3 id="a-week-worked-through">A week, worked through</h3>
+<table>
+<thead>
+<tr>
+<th>Site or claimant</th>
+<th>Base</th>
+<th>Diversity</th>
+<th>Environment</th>
+<th>Roles</th>
+<th>Fleet</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VM, 5 sites at its provider</td>
+<td>10</td>
+<td>1.2</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td>11.2</td>
+</tr>
+<tr>
+<td>VM, the only site in its ASN, open peer</td>
+<td>10</td>
+<td>6</td>
+<td>0</td>
+<td>4</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>OpenWrt router at home, alone in its ASN</td>
+<td>10</td>
+<td>6</td>
+<td>15</td>
+<td></td>
+<td></td>
+<td>31</td>
+</tr>
+<tr>
+<td>Fleet of 3 VMs in 3 ASNs (1, 2 and 6 sites each)</td>
+<td>30</td>
+<td>6 + 3 + 1</td>
+<td>0</td>
+<td></td>
+<td>10</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+<p>Capacity above the base floor appears nowhere. A home router earns
+almost 3 times a VM at a crowded provider.</p>
+<h2 id="how-points-become-alpha">How points become alpha</h2>
+<pre><code>claimant&#39;s alpha = track pool × claimant&#39;s points / all points in that track</code></pre>
+<ul>
+<li><strong>Counted once.</strong> Points are summed over the whole
+program and counted once, at the block mainnet starts. There are no
+weekly slices.</li>
+<li><strong>Separate tracks.</strong> Each track has its own pool, so a
+point for a finding never competes with a point for a week of
+uptime.</li>
+<li><strong>The ceiling.</strong> One claimant receives at most
+<strong>15% of a track</strong>.
+<ul>
+<li>What is above the ceiling is shared among the others in proportion
+to their points.</li>
+<li>If nobody in the track is under the ceiling, it moves to the node
+track.</li>
+</ul></li>
+<li><strong>The ledger.</strong> It shows running totals every week.
+What a point is worth is known only at the end, because it depends on
+everyone's points.</li>
+<li><strong>Example.</strong> 40 claimants hold 30,000 node points
+together. A claimant with 900 receives 3% of the node pool.</li>
+</ul>
+<h2 id="solvers-findings-docs">Solvers, findings, docs</h2>
+<ul>
+<li><strong>Solvers.</strong> You earn 1 point for each window your
+table is fetched on time and graded at least 2% better than the
+reference, plus 1 point for the best table of the window.</li>
+<li><strong>Findings.</strong>
+<ul>
+<li>Points use the the <a href="bounty.html">bounty page</a> tiers.
+Reports sent before the bounty opens count, in order of receipt.</li>
+<li>The first valid private report of an exploit earns its tier, even if
+your own nodes profited from it first. Only that profit is removed.</li>
+</ul></li>
+<li><strong>Docs and onboarding.</strong> Each of these earns 5 points:
+<ul>
+<li>a merged doc fix;</li>
+<li>a merged fix to the agent skill;</li>
+<li>the first full onboarding report from an environment we haven't
+covered yet, with <code>bwos doctor --json</code> output.</li>
+</ul></li>
+</ul>
+<h2 id="fairness-rules">Fairness rules</h2>
+<ul>
+<li><strong>Void windows.</strong> If fewer than three of the four
+validators set weights, or a team-side outage or release defect kept
+nodes from being measured, the window is void for everyone.
+<ul>
+<li>A void window counts as up for the uptime test, and nobody's points
+move.</li>
+<li>We list void windows within 48 hours.</li>
+<li>A release that needs a restart counts as full uptime for the window
+it's announced in and the next one.</li>
+</ul></li>
+<li><strong>Exploits.</strong>
+<ul>
+<li>Points earned through an exploit are removed, whoever found it.</li>
+<li>If you report it privately first, you keep your honest points and
+earn the finding.</li>
+<li>If you use an exploit and don't report it, you lose the affected
+weeks' node points.</li>
+<li>A second time, you're removed from the node and solver tracks.</li>
+</ul></li>
+<li><strong>Multiple accounts.</strong> Before the count we check the
+largest claimants for one operator behind several claims. Merged claims
+share one ceiling. We tell you why, and you have 14 days to answer.</li>
+</ul>
+<h2 id="ledger-and-appeals">Ledger and appeals</h2>
+<ul>
+<li><strong>The ledger.</strong> We publish it weekly in the releases
+repository, within 48 hours of the week's last window. The first ledger,
+covering everything since tester.2, comes after the rules are final.
+<ul>
+<li>It covers each site's points and each claimant's running total.</li>
+<li>It contains no IP addresses.</li>
+</ul></li>
+<li><strong>The script.</strong> We publish the script that computes it
+from the validators' committed values, so you can recompute your own
+line.</li>
+<li><strong>Appeals.</strong> Open an Issue within 14 days of a ledger.
+We answer publicly within 7 days.</li>
+</ul>
+<h2 id="payout">Payout</h2>
+<ul>
+<li><p><strong>The first part,</strong> within 7 days of mainnet start,
+is <strong>one registration's worth</strong> (or your whole share, if
+that's smaller). You can use it to register on mainnet: unstake it to
+TAO for the registration.</p></li>
+<li><p><strong>The rest</strong> is paid in three equal parts, at 30, 60
+and 90 days after mainnet start.</p></li>
+<li><p><strong>Founding operators.</strong> A founding operator is a
+claimant who, before mainnet starts:</p>
+<ul>
+<li>held base on a site for 6 weeks (<em>proposed value</em>); and</li>
+<li>has an accepted finding, or a site with an environment bonus.</li>
+</ul>
+<p>If your first part was less than the burned half of your first
+mainnet registration, we reimburse the difference after that UID passes
+its first mainnet capacity test.</p>
+<ul>
+<li>The burned half is read from chain and capped at half of one
+registration's worth.</li>
+<li>The reimbursement is valid for 30 days from the opening of
+registration.</li>
+<li>It is paid from the subnet owner's share, not from the pool.</li>
+</ul></li>
+<li><p><strong>Unclaimed shares.</strong> A share unclaimed 180 days
+after mainnet start goes to the other node-track claimants, pro
+rata.</p></li>
+</ul>
+<h2 id="changes">Changes</h2>
+<ul>
+<li><strong>Lowering credit.</strong> A change that lowers anyone's
+future credit is announced 7 days before the first window it applies to.
+It never applies to past windows.
+<ul>
+<li>Any new bonus divides the same pool, so adding one counts as
+lowering credit.</li>
+</ul></li>
+<li><strong>Closing an exploit.</strong> A change that closes an exploit
+applies at once, going forward.</li>
+<li><strong>Lowering a bonus.</strong> When a kind of site reaches its
+target, its bonus can be lowered with 7 days' notice.</li>
+<li><strong>Versioning.</strong> This page has a version number, and
+each ledger names the version it used.</li>
+<li><strong>Coming later: a location bonus</strong> for sites that add a
+new country or region. It needs a measured location signal under its own
+ADR, and it comes with the customer front end. Its rule is published
+here before it applies.</li>
+</ul>
+</main>
+<footer>Testnet subnet 611 only. Never use a mainnet wallet or real TAO.
+<a href="https://github.com/transitfabric/releases/releases">Releases</a> ·
+<a href="https://github.com/transitfabric/releases/issues">Issues</a> ·
+<a href="https://github.com/transitfabric/releases/security/advisories/new">Report a vulnerability</a></footer>
+</body></html>
