@@ -39,7 +39,7 @@ This is a community program for early testers. It isn't a big-money bounty.
 
 **Small TAO tips:** the top findings may also get a small tip in real TAO, at our discretion.
 
-**Future alpha:** we intend to recognise points with a discretionary allocation of Transit Fabric alpha after the subnet launches on mainnet. This is an intention, not a promise: the amounts and timing are set at launch and depend on the launch happening.
+**Future alpha:** what testnet work pays is set by the [testnet rules](https://transitfabric.xyz/testnet-rules.html) (`TESTNET-RULES.md`), proposed and open for feedback until Tuesday 17 November 2026, 12:00 UTC. That page is the only place that says what is paid.
 
 **Recognition:** a public leaderboard on this repository, a Founding Tester role in our Discord, and credit in the release notes.
 

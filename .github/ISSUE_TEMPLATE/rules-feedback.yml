@@ -1,0 +1,45 @@
+name: Testnet rules feedback
+description: Comment on the proposed testnet rewards rules (open until Tuesday 17 November 2026, 12:00 UTC).
+title: "Rules feedback: "
+labels: ["rules-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reading the [proposed testnet rules](https://transitfabric.xyz/testnet-rules.html). Feedback is open until **Tuesday 17 November 2026, 12:00 UTC**. After that the rules become final, and we publish what changed.
+
+        Keep it to one topic per Issue if you can. Never paste private keys, seed phrases or IP addresses. Security problems with the rules (a way to earn points you shouldn't) go through a [private advisory](https://github.com/transitfabric/releases/security/advisories/new), not here.
+  - type: dropdown
+    id: section
+    attributes:
+      label: Which section?
+      options:
+        - The pool
+        - Who can earn
+        - "Node points: base"
+        - "Node points: diversity"
+        - "Node points: environment"
+        - "Node points: roles"
+        - "Node points: fleet"
+        - Duplication
+        - How points become alpha
+        - Solvers, findings, docs
+        - Fairness rules
+        - Ledger and appeals
+        - Payout
+        - Changes
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your feedback
+      description: What would you change, and why? If it's about a number, say what value you'd pick.
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Your setup (optional)
+      description: What you run or plan to run (for example a VM, an OpenWrt router or a home node behind NAT). It helps us weigh the feedback.
