@@ -89,6 +89,7 @@ D = 6 / n_asn
   - a photo showing the claim ID;
   - one live check on request.
 - **NAT and a home line** are read from the validators' own data: the node dialled out, and the ASN's type.
+- **Router nodes aren't measured yet** ([Known limits](known-limits.html)). The router package has no probe sessions, so validators can't test a router or credit it. Router points, base included, count from the release that adds router measurement. We're building it before the bounty opens.
 
 ### Roles: added to the site
 
