@@ -1,19 +1,20 @@
-name: Finding (bug or exploit report)
-description: A reproducible bug or exploit against a named version. Security findings go to the private advisory, not here.
-title: "Finding: "
+name: Bug (public, no points)
+description: An ordinary bug against a named version. No points. Findings for points go through the signed form; security issues go to the private advisory.
+title: "Bug: "
 labels: ["finding"]
 body:
   - type: markdown
     attributes:
       value: |
-        **Security findings and exploits: do not file them here.** Use "Report a vulnerability" on the Security tab (a private advisory), or the API for agents: `POST /repos/transitfabric/releases/security-advisories/reports`.
-        Use this form for an ordinary bug. Points need a reproduction against a named version. See https://transitfabric.xyz/bounty.html and https://transitfabric.xyz/known-limits.html first.
-        Never include a private key, seed phrase or wallet file. Remove addresses of machines and hostnames from logs. Large artifacts go in as a zip attachment.
+        **This form earns no points.** A finding you want points for, security or not, goes through the signed form at https://submit.transitfabric.xyz/finding (register first on https://transitfabric.xyz/claim.html).
+        **Security issues and exploits: do not file them here.** Use "Report a vulnerability" on the Security tab (a private advisory), and quote your form receipt if you sent one.
+        Use this form for an ordinary bug against a named version. See https://transitfabric.xyz/bounty.html and https://transitfabric.xyz/known-limits.html first.
+        Never include a private key, seed phrase or wallet file. Remove addresses of machines and hostnames from logs.
   - type: dropdown
     id: severity_claimed
     attributes:
-      label: Severity claimed
-      description: The tiers on the bounty page. We assign the final tier.
+      label: Severity (your estimate)
+      description: A rough guide only. Public Issues earn no points.
       options:
         - critical
         - high

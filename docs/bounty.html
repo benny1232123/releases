@@ -5,15 +5,15 @@
 <nav><a href="index.html">Home</a><a href="quickstart.html">Quick start</a><a href="known-limits.html">Known limits</a><a href="bounty.html">Bounty</a><a href="redteam/index.html">Red team</a><a href="claim.html">Claim credit</a><a href="leaderboard.html">Leaderboard</a><a href="testnet-rules.html">Testnet rules</a></nav></header>
 <main>
 <h1>Transit Fabric testnet bug bounty and Founding Tester program</h1>
-<p class="notice"><strong>Opening soon.</strong> The program opens with v0.1.0-tester.3, which adds structured bug reports (<code>bwos doctor</code>, <code>bwos report</code>) and a red-team pack (the scoring, measurement and threat-model specs, plus the simulator). The <a href="redteam/index.html">red-team pack</a> is already published. Points start counting on the opening date, which we'll announce here and in the Transit Fabric Discord. Bug and security reports are welcome now. Please send them the same way.</p>
+<p class="notice"><strong>Opening soon.</strong> The program opens with v0.1.0-tester.4. The <a href="redteam/index.html">red-team pack</a> (the scoring, measurement and threat-model specs, plus the simulator) is already published. Points start counting on the opening date, which we'll announce here and in the Transit Fabric Discord. Bug and security reports are welcome now. Please send them the same way.</p>
 <p>Transit Fabric is a Bittensor subnet for a decentralized network fabric. It is testing on Bittensor <strong>testnet, subnet 611</strong>. We reward early testers who find bugs and exploits in the released software and the testnet network, and who keep nodes and solvers running.</p>
-<h2>Scope</h2>
+<h2 id="scope">Scope</h2>
 <ul>
 <li>The software released at github.com/transitfabric/releases: the node (kernel and no-root), the router image and packages, the validator, the solver daemon, the <code>bwos</code> CLI, and the link page.</li>
 <li>The incentive mechanism as it runs on subnet 611: scoring, measurement, bindings and route tables.</li>
 <li>The design documents we publish with a release.</li>
 </ul>
-<h2>Out of scope</h2>
+<h2 id="out-of-scope">Out of scope</h2>
 <ul>
 <li>Bittensor/Subtensor itself, wallets, and third-party infrastructure.</li>
 <li>Denial of service against anyone's machines or networks, and spam or flooding of the public testnet.</li>
@@ -21,49 +21,165 @@
 <li>Anything on mainnet (finney). Never use mainnet keys or real TAO.</li>
 <li>Issues already listed in our published threat model as open or accepted, unless you show a new way to exploit them or a bigger payoff.</li>
 </ul>
-<h2>Rewards: points, small TAO tips, and recognition</h2>
+<h2 id="rewards-points-small-tao-tips-and-recognition">Rewards: points, small TAO tips, and recognition</h2>
 <p>This is a community program for early testers. It isn't a big-money bounty.</p>
-<h3>Points for each valid finding</h3>
+<p><strong>Points for each valid finding</strong></p>
 <div class="tw"><table>
-<tr><th>Tier</th><th>What it means</th><th>Points</th></tr>
-<tr><td>Critical</td><td>Stop weight-setting for the subnet; make honest validators disagree on weights; take over another operator's nodes or binding; collect most of an emission pool for nothing</td><td>100</td></tr>
-<tr><td>High</td><td>An incentive exploit worth 2x or more over honest play at low cost; knock honest operators out of credit; crash validators remotely</td><td>40</td></tr>
-<tr><td>Medium</td><td>A bounded unfair gain; a reliability bug that skews scoring; a leak of private data</td><td>15</td></tr>
-<tr><td>Low</td><td>Hardening issues, minor bugs, misleading docs</td><td>5</td></tr>
+<thead>
+<tr>
+<th>Tier</th>
+<th>What it means</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Critical</td>
+<td>Stop weight-setting for the subnet; make honest validators disagree on weights; take over another operator's nodes or binding; collect most of an emission pool for nothing</td>
+<td>100</td>
+</tr>
+<tr>
+<td>High</td>
+<td>An incentive exploit worth 2x or more over honest play at low cost; knock honest operators out of credit; crash validators remotely</td>
+<td>40</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>A bounded unfair gain; a reliability bug that skews scoring; a leak of private data</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>Hardening issues, minor bugs, misleading docs</td>
+<td>5</td>
+</tr>
+</tbody>
 </table></div>
 <ul>
 <li><strong>+25%</strong> for a working reproduction (a sim or a testnet demonstration) plus a suggested fix.</li>
 <li>The first valid report of an issue earns the points. Issues already listed as open in our threat model get credit only, unless you show a new exploit path.</li>
 <li>We assign the tier and the points, and we explain our reasoning.</li>
 </ul>
-<h3>Points for taking part</h3>
+<p><strong>Points for taking part</strong></p>
 <ul>
 <li>Running a node or solver that stays live and scored: points per week it stays up.</li>
 <li>Onboarding feedback, and documentation fixes that get merged.</li>
 </ul>
 <p><strong>Small TAO tips:</strong> the top findings may also get a small tip in real TAO, at our discretion.</p>
-<p><strong>Future alpha:</strong> what testnet work pays is set by the <a href="testnet-rules.html">testnet rules</a>, proposed and open for feedback until Tuesday 17 November 2026, 12:00 UTC. That page is the only place that says what is paid.</p>
-<p><strong>Recognition:</strong> a public <a href="leaderboard.html">leaderboard</a> on this repository, a Founding Tester role in our Discord, and credit in the release notes.</p>
-<h2>How to report</h2>
+<p><strong>Future alpha:</strong> what testnet work pays is set by the <a href="testnet-rules.html">testnet rules</a> (<code>TESTNET-RULES.md</code>). That page is the only place that says what is paid.</p>
+<p><strong>Recognition:</strong> a public leaderboard on this repository, a Founding Tester role in our Discord, and credit in the release notes.</p>
+<p><strong>No fee.</strong> Registering and submitting are free. Signing moves no funds.</p>
+<h2 id="who-can-earn-points-for-findings">Who can earn points for findings</h2>
+<p><strong>Points need a registration.</strong> Register once on the <a href="claim.html">claim page</a> before you send a finding. You sign one short message with a wallet, and we tie your GitHub account to that address. A GitHub account is required for credit.</p>
+<p><strong>Register your hotkey or coldkey address:</strong> the one your testnet UID uses, or the coldkey that owns it. We find your nodes through that address. If you register some other wallet, we can't link your nodes to you, and you can't become a verified tester.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th></th>
+<th>Verified tester</th>
+<th>Everyone else</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who</strong></td>
+<td>Registered, and a node bound to your claimed account has passed validators' tests on at least 7 days</td>
+<td>Registered, without that</td>
+</tr>
+<tr>
+<td><strong>What earns points</strong></td>
+<td>Any tier, Critical to Low</td>
+<td>Critical or High only, with a working reproduction (a script or a simulator scenario)</td>
+</tr>
+<tr>
+<td><strong>Open findings at a time</strong></td>
+<td>Up to 5</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
 <ul>
-<li><strong>Security issues and exploits:</strong> report them privately through GitHub's "Report a vulnerability" (private security advisory) on <a href="https://github.com/transitfabric/releases/security/advisories/new">github.com/transitfabric/releases</a>. Don't open public issues for them.</li>
-<li><strong>Ordinary bugs:</strong> open a public <a href="https://github.com/transitfabric/releases/issues">Issue</a> on the same repository.</li>
-<li>Include the version, the steps to reproduce, what you expected and what happened, and logs with addresses and keys removed.</li>
-</ul>
-<h2>Registering and submitting</h2>
+<li><strong>Your claimed account</strong> is the address you registered.
 <ul>
-<li><strong>Register once</strong> on the <a href="claim.html">claim page</a>. You sign one short message with a wallet (signing moves no funds), and we tie your GitHub account to that address. A GitHub account is required for credit.</li>
-<li><strong>Read first:</strong> the <a href="redteam/index.html">red-team pack</a> has the specs, the threat model and the simulator, and <a href="redteam/simulator.html">how to reproduce a finding in the simulator</a>.</li>
-<li><strong>Submit findings</strong> with the <a href="redteam/FINDING.md">finding template</a>. A bug goes in through the Finding <a href="https://github.com/transitfabric/releases/issues/new/choose">Issue form</a>. A security finding goes in privately, through the <a href="https://github.com/transitfabric/releases/security/advisories/new">private advisory</a> or its API (<code>POST /repos/transitfabric/releases/security-advisories/reports</code>).</li>
-<li><strong>Large artifacts</strong> (simulator output, logs, captures) go in as a zip attachment. Remove keys, seed phrases, machine addresses and hostnames first.</li>
-<li><strong>No GitHub account?</strong> Upload your finding to the private <a href="https://submit.transitfabric.xyz">findings sandbox</a> (markdown up to 1 MB, optional zip up to 10 MB). It earns no credit. For agents: <code>curl -sS -F file=@finding.md https://submit.transitfabric.xyz/upload</code>.</li>
+<li>If it is a coldkey, a node counts when it is bound to any of that coldkey's hotkeys on subnet 611.</li>
+<li>If it is a hotkey, the node must be bound to that hotkey.</li>
+</ul></li>
+<li><strong>Passing a test</strong> means validators' published snapshot for the window lists the node with verified capacity above zero.</li>
+<li><strong>Days</strong> are counted from those published snapshots. They needn't be in a row.</li>
+<li><strong>Your tier is checked when a finding arrives.</strong> If you claim the verified tier and haven't earned it yet, the finding is treated as from everyone else.</li>
+<li><strong>Wait for a verdict</strong> before you send more than your limit. A finding stops counting as open when we record a verdict on it.</li>
 </ul>
-<h2>Rules</h2>
+<h2 id="how-to-report">How to report</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What</th>
+<th>Where</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A finding you want points for, security or not</td>
+<td>The <a href="https://submit.transitfabric.xyz/finding">signed finding form</a> (private)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>An ordinary bug, in public</td>
+<td>An <a href="https://github.com/transitfabric/releases/issues/new/choose">Issue</a></td>
+<td>No</td>
+</tr>
+<tr>
+<td>A security issue, to coordinate a fix</td>
+<td>A <a href="https://github.com/transitfabric/releases/security/advisories/new">private advisory</a>. Quote your form receipt if you sent one</td>
+<td>Only through the form</td>
+</tr>
+<tr>
+<td>A finding without a GitHub account</td>
+<td>The <a href="https://submit.transitfabric.xyz">plain upload</a> (private)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't open public Issues for security issues or exploits.</p>
+<p><strong>The signed finding form</strong></p>
+<ul>
+<li><p><strong>Every field is required.</strong> They are:</p>
+<ul>
+<li>the version (a release tag, or the red-team pack tag for a simulator finding)</li>
+<li>the tier you claim for the finding</li>
+<li>your eligibility (verified tester or everyone else)</li>
+<li>the component</li>
+<li>numbered steps to reproduce</li>
+<li>what you expected (cite the spec or threat-model section)</li>
+<li>what happened</li>
+<li>a proof-of-concept zip: the script, simulator scenario or logs that reproduce it</li>
+</ul>
+<p>Impact and a suggested fix are optional, and worth adding.</p></li>
+<li><p><strong>Sign it with your registered wallet.</strong> The form names your fields by their SHA-256 in one short message, and you sign that message in a browser wallet or with <code>btcli wallet sign</code>. We check the signature when the form arrives.</p></li>
+<li><p><strong>Agents</strong> can use <code>curl</code>. The form page shows how to build and sign the message.</p></li>
+<li><p><strong>Read first:</strong> the <a href="redteam/index.html">red-team pack</a> has the specs, the threat model and the simulator. Also see <a href="redteam/simulator.html">how to reproduce a finding in the simulator</a>, and the <a href="redteam/FINDING.md">finding template</a> for what a good report holds.</p></li>
+<li><p><strong>Clean your attachments.</strong> Remove keys, seed phrases, machine addresses and hostnames from the zip first.</p></li>
+</ul>
+<p><strong>What happens next</strong></p>
+<ol type="1">
+<li><strong>An automatic first pass</strong> checks four things:
+<ul>
+<li>that the steps to reproduce and the version are there;</li>
+<li>whether the finding duplicates an earlier one or an open threat-model row;</li>
+<li>which eligibility tier you're in;</li>
+<li>whether the report is obviously low effort, such as template text left in, no real steps or no proof of concept.</li>
+</ul></li>
+<li><strong>A person reads every finding.</strong> The first pass flags reports to close and says why, but it never closes one. We close a flagged report with the reason given, and you can reply.</li>
+<li><strong>We assign the tier and the points,</strong> and explain our reasoning.</li>
+</ol>
+<h2 id="rules">Rules</h2>
 <ul>
 <li>Testnet only. Use your own nodes, hotkeys and test TAO.</li>
 <li>Points need a reproduction against a named version (a release tag, or the red-team pack tag for a simulator finding).</li>
 <li>Duplicates and reports we can't verify are closed with no points.</li>
-<li>At most 5 open unverified findings per account. Wait for a verdict before you send more.</li>
+<li>Keep within your open-findings limit: 5 for a verified tester, 1 for everyone else.</li>
+<li>Low-effort reports are closed with a reason.</li>
 <li>Don't disrupt other testers beyond the minimum needed to demonstrate an issue. Stop and report as soon as you've shown it.</li>
 <li>The first valid report of an issue wins the reward.</li>
 <li>Disclosure: keep security findings private until they're fixed. After that we give public credit, with your permission.</li>

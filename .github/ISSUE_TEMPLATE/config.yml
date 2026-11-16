@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Security finding or exploit
+  - name: Finding you want points for
+    url: https://submit.transitfabric.xyz/finding
+    about: Points-bearing findings, security or not, go through the signed form. Register first on the claim page, then sign with your registered wallet.
+  - name: Security issue
     url: https://github.com/transitfabric/releases/security/advisories/new
-    about: Use "Report a vulnerability" (private advisory). Never open a public Issue for a security finding.
+    about: Use "Report a vulnerability" (private advisory). Never open a public Issue for a security issue. Quote your form receipt if you sent one.
