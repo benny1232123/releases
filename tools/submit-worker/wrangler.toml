@@ -1,0 +1,20 @@
+# The findings sandbox at submit.transitfabric.xyz. Secrets (ADMIN_KEY, IP_SALT) are set on the
+# Worker with `wrangler secret put` and are never in this file; `wrangler deploy` keeps them.
+# Settings match the deployment: compatibility date, no workers.dev route, the custom domain.
+name = "tf-submit"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+workers_dev = false
+routes = [{ pattern = "submit.transitfabric.xyz", custom_domain = true }]
+
+[[kv_namespaces]]
+binding = "SUB"
+id = "<your KV namespace id>"
+
+# The per-minute burst limit, keyed per route and client (IPv4 address or IPv6 /64), checked before
+# any KV access (security review M1). The daily counter in KV stays as a backstop. namespace_id is
+# an account-unique integer of our choosing.
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1611"
+simple = { limit = 5, period = 60 }

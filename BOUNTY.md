@@ -1,6 +1,6 @@
 # Transit Fabric testnet bug bounty and Founding Tester program
 
-> **Opening soon.** The program opens with v0.1.0-tester.3, which adds structured bug reports (`bwos doctor`, `bwos report`) and a red-team pack (the scoring, measurement and threat-model specs, plus the simulator). The [red-team pack](https://transitfabric.xyz/redteam/index.html) is already published. Points start counting on the opening date, which we'll announce here and in the Transit Fabric Discord. Bug and security reports are welcome now. Please send them the same way.
+> **Opening soon.** The program opens with v0.1.0-tester.4. The [red-team pack](https://transitfabric.xyz/redteam/index.html) (the scoring, measurement and threat-model specs, plus the simulator) is already published. Points start counting on the opening date, which we'll announce here and in the Transit Fabric Discord. Bug and security reports are welcome now. Please send them the same way.
 
 Transit Fabric is a Bittensor subnet for a decentralized network fabric. It is testing on Bittensor **testnet, subnet 611**. We reward early testers who find bugs and exploits in the released software and the testnet network, and who keep nodes and solvers running.
 
@@ -39,27 +39,75 @@ This is a community program for early testers. It isn't a big-money bounty.
 
 **Small TAO tips:** the top findings may also get a small tip in real TAO, at our discretion.
 
-**Future alpha:** what testnet work pays is set by the [testnet rules](https://transitfabric.xyz/testnet-rules.html) (`TESTNET-RULES.md`), proposed and open for feedback until Tuesday 17 November 2026, 12:00 UTC. That page is the only place that says what is paid.
+**Future alpha:** what testnet work pays is set by the [testnet rules](https://transitfabric.xyz/testnet-rules.html) (`TESTNET-RULES.md`). That page is the only place that says what is paid.
 
 **Recognition:** a public leaderboard on this repository, a Founding Tester role in our Discord, and credit in the release notes.
 
-## How to report
-- **Security issues and exploits:** report them privately through GitHub's "Report a vulnerability" (private security advisory) on github.com/transitfabric/releases. Don't open public issues for them.
-- **Ordinary bugs:** open a public Issue on the same repository.
-- Include the version, the steps to reproduce, what you expected and what happened, and logs with addresses and keys removed.
+**No fee.** Registering and submitting are free. Signing moves no funds.
 
-## Registering and submitting
-- **Register once** on the [claim page](https://transitfabric.xyz/claim.html). You sign one short message with a wallet (signing moves no funds), and we tie your GitHub account to that address. A GitHub account is required for credit.
-- **Read first:** the [red-team pack](https://transitfabric.xyz/redteam/index.html) has the specs, the threat model and the simulator, and [how to reproduce a finding in the simulator](https://transitfabric.xyz/redteam/simulator.html).
-- **Submit findings** with the [finding template](https://transitfabric.xyz/redteam/FINDING.md). A bug goes in through the Finding [Issue form](https://github.com/transitfabric/releases/issues/new/choose). A security finding goes in privately, through the [private advisory](https://github.com/transitfabric/releases/security/advisories/new) or its API (`POST /repos/transitfabric/releases/security-advisories/reports`).
-- **Large artifacts** (simulator output, logs, captures) go in as a zip attachment. Remove keys, seed phrases, machine addresses and hostnames first.
-- **No GitHub account?** Upload your finding to the private [findings sandbox](https://submit.transitfabric.xyz) (markdown up to 1 MB, optional zip up to 10 MB). It earns no credit. For agents: `curl -sS -F file=@finding.md https://submit.transitfabric.xyz/upload`.
+## Who can earn points for findings
+
+**Points need a registration.** Register once on the [claim page](https://transitfabric.xyz/claim.html) before you send a finding. You sign one short message with a wallet, and we tie your GitHub account to that address. A GitHub account is required for credit.
+
+**Register your hotkey or coldkey address:** the one your testnet UID uses, or the coldkey that owns it. We find your nodes through that address. If you register some other wallet, we can't link your nodes to you, and you can't become a verified tester.
+
+| | Verified tester | Everyone else |
+|---|---|---|
+| **Who** | Registered, and a node bound to your claimed account has passed validators' tests on at least 7 days | Registered, without that |
+| **What earns points** | Any tier, Critical to Low | Critical or High only, with a working reproduction (a script or a simulator scenario) |
+| **Open findings at a time** | Up to 5 | 1 |
+
+- **Your claimed account** is the address you registered.
+  - If it is a coldkey, a node counts when it is bound to any of that coldkey's hotkeys on subnet 611.
+  - If it is a hotkey, the node must be bound to that hotkey.
+- **Passing a test** means validators' published snapshot for the window lists the node with verified capacity above zero.
+- **Days** are counted from those published snapshots. They needn't be in a row.
+- **Your tier is checked when a finding arrives.** If you claim the verified tier and haven't earned it yet, the finding is treated as from everyone else.
+- **Wait for a verdict** before you send more than your limit. A finding stops counting as open when we record a verdict on it.
+
+## How to report
+
+| What | Where | Points |
+|---|---|---|
+| A finding you want points for, security or not | The [signed finding form](https://submit.transitfabric.xyz/finding) (private) | Yes |
+| An ordinary bug, in public | An [Issue](https://github.com/transitfabric/releases/issues/new/choose) | No |
+| A security issue, to coordinate a fix | A [private advisory](https://github.com/transitfabric/releases/security/advisories/new). Quote your form receipt if you sent one | Only through the form |
+| A finding without a GitHub account | The [plain upload](https://submit.transitfabric.xyz) (private) | No |
+
+Don't open public Issues for security issues or exploits.
+
+**The signed finding form**
+- **Every field is required.** They are:
+  - the version (a release tag, or the red-team pack tag for a simulator finding)
+  - the tier you claim for the finding
+  - your eligibility (verified tester or everyone else)
+  - the component
+  - numbered steps to reproduce
+  - what you expected (cite the spec or threat-model section)
+  - what happened
+  - a proof-of-concept zip: the script, simulator scenario or logs that reproduce it
+
+  Impact and a suggested fix are optional, and worth adding.
+- **Sign it with your registered wallet.** The form names your fields by their SHA-256 in one short message, and you sign that message in a browser wallet or with `btcli wallet sign`. We check the signature when the form arrives.
+- **Agents** can use `curl`. The form page shows how to build and sign the message.
+- **Read first:** the [red-team pack](https://transitfabric.xyz/redteam/index.html) has the specs, the threat model and the simulator. Also see [how to reproduce a finding in the simulator](https://transitfabric.xyz/redteam/simulator.html), and the [finding template](https://transitfabric.xyz/redteam/FINDING.md) for what a good report holds.
+- **Clean your attachments.** Remove keys, seed phrases, machine addresses and hostnames from the zip first.
+
+**What happens next**
+1. **An automatic first pass** checks four things:
+   - that the steps to reproduce and the version are there;
+   - whether the finding duplicates an earlier one or an open threat-model row;
+   - which eligibility tier you're in;
+   - whether the report is obviously low effort, such as template text left in, no real steps or no proof of concept.
+2. **A person reads every finding.** The first pass flags reports to close and says why, but it never closes one. We close a flagged report with the reason given, and you can reply.
+3. **We assign the tier and the points,** and explain our reasoning.
 
 ## Rules
 - Testnet only. Use your own nodes, hotkeys and test TAO.
 - Points need a reproduction against a named version (a release tag, or the red-team pack tag for a simulator finding).
 - Duplicates and reports we can't verify are closed with no points.
-- At most 5 open unverified findings per account. Wait for a verdict before you send more.
+- Keep within your open-findings limit: 5 for a verified tester, 1 for everyone else.
+- Low-effort reports are closed with a reason.
 - Don't disrupt other testers beyond the minimum needed to demonstrate an issue. Stop and report as soon as you've shown it.
 - The first valid report of an issue wins the reward.
 - Disclosure: keep security findings private until they're fixed. After that we give public credit, with your permission.
