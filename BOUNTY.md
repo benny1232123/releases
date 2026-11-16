@@ -1,6 +1,6 @@
 # Transit Fabric testnet bug bounty and Founding Tester program
 
-> **Opening soon.** The program opens with v0.1.0-tester.4. The [red-team pack](https://transitfabric.xyz/redteam/index.html) (the scoring, measurement and threat-model specs, plus the simulator) is already published. Points start counting on the opening date, which we'll announce here and in the Transit Fabric Discord. Bug and security reports are welcome now. Please send them the same way.
+> **Opening soon.** The program opens with a later testnet release; we will announce the date in Discord and here. The [red-team pack](https://transitfabric.xyz/redteam/index.html) (the scoring, measurement and threat-model specs, plus the simulator) is already published. Points start counting on the opening date, which we'll announce here and in the Transit Fabric Discord. Bug and security reports are welcome now. Please send them the same way.
 
 Transit Fabric is a Bittensor subnet for a decentralized network fabric. It is testing on Bittensor **testnet, subnet 611**. We reward early testers who find bugs and exploits in the released software and the testnet network, and who keep nodes and solvers running.
 
