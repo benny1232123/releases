@@ -52,6 +52,7 @@
 <p>Location is derived from IP addresses, coarsely:</p>
 <ul>
 <li><strong>Country and first-level region</strong> (a state or province), looked up on our publisher in a local copy of the DB-IP Lite database. Only for addresses already public: a public node's endpoint in the peer directory, the seed nodes a release lists, and the axon address a UID publishes on chain.</li>
+<li><strong>A claimed location:</strong> each validator looks up the address your node's probe session comes from, in its own local copy of the same database, on the validator. Only the country, the first-level region and coordinates rounded to whole degrees leave the validator, never the address or a city. It is checked against the validated region below.</li>
 <li><strong>A validated region:</strong> a circle centred on a whole degree of latitude and longitude, with a radius of tens to thousands of km, worked out from round-trip times alone, never from an address.</li>
 <li>Never at city level, never a street address.</li>
 </ul>
