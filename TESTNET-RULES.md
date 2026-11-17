@@ -8,7 +8,7 @@
 >
 > Point at the section you're commenting on. Numbers marked *proposed value* are the ones we most want views on.
 
-**Proposed rules, version 2.** This page will be the only place that says what testnet work may earn. Other pages link here and don't restate it.
+**Proposed rules, version 2.1** (2.1, 2026-11-17: adds the owner-forwarder measurement correction under Fairness rules; it only raises credit). This page will be the only place that says what testnet work may earn. Other pages link here and don't restate it.
 
 ## In short
 
@@ -72,7 +72,7 @@ A site holds base for the week when all four of these hold:
 - **Uptime.** It was up in at least 90% of the week's non-void windows. From 50% to 90%, it earns 5 points instead.
 - **A capacity test.** It passed at least one capacity test, verified at 20 Mb/s or more (*proposed value*), or 5 Mb/s for a router or a node behind NAT.
   - A site counts only with a live binding and consent, a fresh signed declaration, and a BGP session to another UID's node.
-- **Honest declarations.** In no window was its verified capacity under half of what it declared.
+- **Honest declarations.** In no window was its verified capacity under half of what it declared. Verified capacity here is the figure after any measurement correction (Fairness rules, "Measurement corrections").
 - **A current release.** It ran the current release, or the previous one for at most 48 hours after a new one.
 
 ### Diversity: up to 6 points per site
@@ -186,6 +186,13 @@ claimant's alpha = track pool × claimant's points / all points in that track
   - If you report it privately first, you keep your honest points and earn the finding.
   - If you use an exploit and don't report it, you lose the affected weeks' node points.
   - A second time, you're removed from the node and solver tracks.
+- **Measurement corrections.** When a team-side measurement fault under-read nodes, the ledger corrects the nodes it hit instead of voiding the window. Each correction is listed here, and the ledger names it and lists every node-window it changed.
+  - **The owner forwarder (2026-11-17).** From window 23,500 until the owner forwarder is removed (scheduled Tue 2026-11-24), one of our validators reached some nodes only through a forwarder. That path was capped at 100 Mb/s with about 240 ms of delay. Because that validator holds most of the stake, its low readings set those nodes' capacity. For those windows:
+    - **Who it covers.** A node is covered in a window when every test that validator ran on it in that window went through the forwarder.
+    - **The credit.** A covered node is credited the larger of two figures: its published combined capacity, and its capacity recomputed from the other validators' results alone, under the same rules.
+    - **Honest declarations.** The corrected figure is the one the honest-declaration test reads.
+    - **The overclaim cut.** A 20% overclaim cut that came from forwarder-capped results is void. A cut stands only if the other validators' results alone would also have triggered it.
+    - **What it never does.** It only raises credit. It never lowers anyone's points, and it doesn't change the published scores or past weights.
 - **Multiple accounts.** Before the count we check the largest claimants for one operator behind several claims. Merged claims share one ceiling. We tell you why, and you have 14 days to answer.
 
 ## Ledger and appeals

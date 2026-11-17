@@ -23,7 +23,7 @@ no GitHub account.</li>
 <p>Point at the section you're commenting on. Numbers marked
 <em>proposed value</em> are the ones we most want views on.</p>
 </blockquote>
-<p><strong>Proposed rules, version 2.</strong> This page will be the
+<p><strong>Proposed rules, version 2.1</strong> (2.1, 2026-11-17: adds the owner-forwarder measurement correction under Fairness rules; it only raises credit). This page will be the
 only place that says what testnet work may earn. Other pages link here
 and don't restate it.</p>
 <h2 id="in-short">In short</h2>
@@ -193,7 +193,7 @@ for a router or a node behind NAT.
 declaration, and a BGP session to another UID's node.</li>
 </ul></li>
 <li><strong>Honest declarations.</strong> In no window was its verified
-capacity under half of what it declared.</li>
+capacity under half of what it declared. Verified capacity here is the figure after any measurement correction (Fairness rules, &ldquo;Measurement corrections&rdquo;).</li>
 <li><strong>A current release.</strong> It ran the current release, or
 the previous one for at most 48 hours after a new one.</li>
 </ul>
@@ -452,6 +452,14 @@ earn the finding.</li>
 weeks' node points.</li>
 <li>A second time, you're removed from the node and solver tracks.</li>
 </ul></li>
+<li><strong>Measurement corrections.</strong> When a team-side measurement fault under-read nodes, the ledger corrects the nodes it hit instead of voiding the window. Each correction is listed here, and the ledger names it and lists every node-window it changed.<ul>
+<li><strong>The owner forwarder (2026-11-17).</strong> From window 23,500 until the owner forwarder is removed (scheduled Tue 2026-11-24), one of our validators reached some nodes only through a forwarder. That path was capped at 100&nbsp;Mb/s with about 240&nbsp;ms of delay. Because that validator holds most of the stake, its low readings set those nodes&rsquo; capacity. For those windows:<ul>
+<li><strong>Who it covers.</strong> A node is covered in a window when every test that validator ran on it in that window went through the forwarder.</li>
+<li><strong>The credit.</strong> A covered node is credited the larger of two figures: its published combined capacity, and its capacity recomputed from the other validators&rsquo; results alone, under the same rules.</li>
+<li><strong>Honest declarations.</strong> The corrected figure is the one the honest-declaration test reads.</li>
+<li><strong>The overclaim cut.</strong> A 20% overclaim cut that came from forwarder-capped results is void. A cut stands only if the other validators&rsquo; results alone would also have triggered it.</li>
+<li><strong>What it never does.</strong> It only raises credit. It never lowers anyone&rsquo;s points, and it doesn&rsquo;t change the published scores or past weights.</li>
+</ul></li></ul></li>
 <li><strong>Multiple accounts.</strong> Before the count we check the
 largest claimants for one operator behind several claims. Merged claims
 share one ceiling. We tell you why, and you have 14 days to answer.</li>
