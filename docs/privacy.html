@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Privacy Policy | Transit Fabric testnet 611</title><link rel="stylesheet" href="style.css"><link rel="icon" type="image/png" href="logo.png"></head><body>
 <header><a class="brand" href="index.html">Transit Fabric releases</a>
-<nav><a href="index.html">Home</a><a href="quickstart.html">Quick start</a><a href="known-limits.html">Known limits</a><a href="bounty.html">Bounty</a><a href="redteam/index.html">Red team</a><a href="claim.html">Claim credit</a><a href="leaderboard.html">Leaderboard</a><a href="testnet-rules.html">Testnet rules</a></nav></header>
+<nav><a href="index.html">Home</a><a href="https://dashboard.transitfabric.xyz/">Network dashboard</a><a href="quickstart.html">Quick start</a><a href="known-limits.html">Known limits</a><a href="bounty.html">Bounty</a><a href="redteam/index.html">Red team</a><a href="claim.html">Claim credit</a><a href="leaderboard.html">Leaderboard</a><a href="testnet-rules.html">Testnet rules</a></nav></header>
 <main>
 <h1 id="transit-fabric-privacy-policy">Transit Fabric Privacy Policy</h1>
 <blockquote>
@@ -48,7 +48,7 @@
 <li><strong>Fault reports:</strong> if your node runs System One (<code>fabric-sense</code>), it may send validators a signed fault report: a symptom code, the software version and commit, the node kind and platform, and for a crash an assertion hash. No IP address and no personal data. Validators publish counts only.</li>
 </ul>
 <h3 id="35-the-stats-api-and-coarse-location">3.5 The stats API and coarse location</h3>
-<p>The stats API publishes testnet data that a majority of validators agree on. It <strong>never publishes an IP address</strong> (a node's internet or overlay address) and <strong>never a coldkey</strong>. UIDs and hotkeys are public on chain; node keys are shown as a 16-character prefix.</p>
+<p>The stats API publishes testnet data that a majority of validators agree on. It <strong>never publishes a node's internet IP address</strong> and <strong>never a coldkey</strong>. It does publish each node's full public key and its <strong>fabric address</strong>: an overlay address in <code>fc00::/8</code> derived from that public key, which is not routable on the internet and reveals nothing beyond the key itself. UIDs and hotkeys are public on chain.</p>
 <p>Location is derived from IP addresses, coarsely:</p>
 <ul>
 <li><strong>Country and first-level region</strong> (a state or province), looked up on our publisher in a local copy of the DB-IP Lite database. Only for addresses already public: a public node's endpoint in the peer directory, the seed nodes a release lists, and the axon address a UID publishes on chain.</li>
@@ -59,6 +59,8 @@
 <p>When you call the API, the Worker uses your address only in memory as a rate-limit key and keeps no request log.</p>
 <h3 id="36-the-site-transitfabricxyz-and-the-releases-repository">3.6 The site (transitfabric.xyz) and the releases repository</h3>
 <p>The site is static. It sets no cookies, runs no analytics, records no sessions and captures no keystrokes. The claim page's wallet libraries are served from the site itself, and the page makes no network request. The host serving the pages (see section 6) receives your IP address and browser details as part of serving any web request.</p>
+<h3 id="36a-the-network-dashboard">3.6a The network dashboard (dashboard.transitfabric.xyz)</h3>
+<p>The dashboard is read-only. It sets no cookies, runs no analytics, records no sessions and loads nothing from third parties; it reads only from our stats API. It remembers whether you last chose the map or the globe in your own browser's local storage, which never leaves your device. The host serving it receives your IP address and browser details as part of serving any web request.</p>
 <h3 id="37-public-records-we-publish">3.7 Public records we publish</h3>
 <ul>
 <li>The <strong>leaderboard</strong> and the weekly <strong>ledger</strong> show your GitHub login or the handle you registered with, and your points. They contain no IP addresses.</li>
