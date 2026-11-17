@@ -17,6 +17,7 @@ Read the [bounty page](../bounty.html) first: it has the scope, the out-of-scope
 | [Threat model](threat-model.html) ([.md](threat-model.md)) | Every attack we have written down, its mitigation and its status. Read it before you file. |
 | [Whitepaper](whitepaper.html) ([.md](whitepaper.md), [PDF](Transit_Fabric_Whitepaper.pdf)) | The design in one document. |
 | [The simulator](simulator.html) | `bwos-sim`, static binaries for Linux x86_64 and aarch64, with checksums and sample output. A walk-through of reproducing a finding in it. |
+| [Run a shadow validator](shadow-validator.html) ([.md](shadow-validator.md)) | Recompute every window's weights from public data with `bwos-validator shadow` and compare them with what each validator revealed. A `MISMATCH` is a determinism finding and bounty-eligible. No wallet, UID or TAO. |
 | [Finding template](FINDING.md) | The format we want findings in. The "Finding" Issue form has the same fields. |
 
 The simulator binaries are assets of the GitHub release [`redteam-pack-91be12e`](https://github.com/transitfabric/releases/releases/tag/redteam-pack-91be12e), a pre-release. Download them and check the `SHA256SUMS` file before you run anything.
