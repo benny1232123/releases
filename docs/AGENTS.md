@@ -15,6 +15,7 @@ Transit Fabric is a Bittensor subnet for a decentralized network fabric, running
 - Quick start: https://transitfabric.xyz/quickstart.html. Also the `QUICKSTART.md` and `testers.md` assets. Read the quick start before you act.
 - Known limits: https://transitfabric.xyz/known-limits.html.
 - Operator guide: https://transitfabric.xyz/operator-guide.html. Read it, the testnet rules (https://transitfabric.xyz/testnet-rules.html) and the known limits before you choose a setup.
+- FAQ: https://transitfabric.xyz/faq.html (customers, operator costs, whether capacity tests raise a 95th-percentile bill).
 - Red-team pack: https://transitfabric.xyz/redteam/index.html. Shadow validator guide: https://transitfabric.xyz/redteam/shadow-validator.html (read-only; never give it a hotkey or wallet, it refuses them).
 
 ## Before you run anything

@@ -45,7 +45,7 @@ Check these with your host or ISP before you register a UID. This page doesn't r
 - **Outbound:** UDP to the validators' probe agents and TCP to their object stores. Behind NAT, also TCP to the probe agents' hosts for capacity tests.
 - **Traffic allowance.** Capacity tests and carried traffic use bandwidth.
   - On a metered or capped plan, work out what a month costs before you declare capacity.
-  - On a 95th-percentile plan, capacity tests can use about half of the monthly burst allowance. Plan for that before you declare.
+  - On a 95th-percentile plan, capacity tests can use about half of the monthly burst allowance. Plan for that before you declare ([FAQ](https://transitfabric.xyz/faq.html#do-capacity-tests-raise-my-95th-percentile-bill)).
 - **Your own address block.** Two nodes in the same /24 count once, whoever runs them. That includes neighbours at the same host.
 
 ## 4. Declare honestly
