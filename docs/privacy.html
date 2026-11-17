@@ -1,14 +1,12 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Privacy Policy | Transit Fabric testnet 611</title><link rel="stylesheet" href="style.css"><link rel="icon" type="image/png" href="logo.png"><meta name="robots" content="noindex"></head><body>
+<title>Privacy Policy | Transit Fabric testnet 611</title><link rel="stylesheet" href="style.css"><link rel="icon" type="image/png" href="logo.png"></head><body>
 <header><a class="brand" href="index.html">Transit Fabric releases</a>
 <nav><a href="index.html">Home</a><a href="quickstart.html">Quick start</a><a href="known-limits.html">Known limits</a><a href="bounty.html">Bounty</a><a href="redteam/index.html">Red team</a><a href="claim.html">Claim credit</a><a href="leaderboard.html">Leaderboard</a><a href="testnet-rules.html">Testnet rules</a></nav></header>
 <main>
-<p class="warn"><strong>DRAFT, not legal advice, needs review by qualified counsel before publication.</strong> This text is not in force.</p>
 <h1 id="transit-fabric-privacy-policy">Transit Fabric Privacy Policy</h1>
 <blockquote>
-<p><strong>DRAFT, not legal advice, needs review by qualified counsel before publication.</strong></p>
-<p>Version 1 (draft of 2026-11-16). Not in force. Published together with the <a href="terms.html">Terms of Service</a>, version 1.</p>
+<p>Version 1 · Effective 2026-11-17 · We may update this policy; the current version is always at this URL. It goes with the <a href="terms.html">Terms of Service</a>, version 1.</p>
 </blockquote>
 <p>This policy explains what personal data the Transit Fabric testnet services collect, why, and what you can do about it. The services are the site at transitfabric.xyz, the claim page, the findings sandbox at submit.transitfabric.xyz, the stats API at api.transitfabric.xyz, the release files at github.com/transitfabric/releases, and testnet subnet 611 (the "Services").</p>
 <h2 id="1-who-we-are">1. Who we are</h2>
@@ -132,15 +130,19 @@
 </tr>
 <tr>
 <td>IP addresses at our Workers</td>
-<td>Not stored</td>
+<td>Not stored. We keep no request logs of our own; Cloudflare processes request data as our host under its own policies (section 6)</td>
 </tr>
 <tr>
 <td>Registrations</td>
-<td>While the program runs and for [RETENTION PERIOD] after its last payout or allocation, to settle credit and appeals. A public Issue stays on GitHub until it is deleted</td>
+<td>For the life of the bug bounty plus 2 years, to settle credit and appeals. A public Issue stays on GitHub until it is deleted</td>
 </tr>
 <tr>
-<td>Findings, uploads, zips and attestation records</td>
-<td>While the program runs and for [RETENTION PERIOD] after it ends, then deleted, except what a fix, a regression test or a threat-model entry needs (with no personal data)</td>
+<td>Signed findings, their zips and attestation records</td>
+<td>For the life of the bug bounty plus 2 years, then deleted, except what a fix, a regression test or a threat-model entry needs (with no personal data)</td>
+</tr>
+<tr>
+<td>Plain sandbox uploads, their zips and attestation records</td>
+<td>Deleted 1 year after triage</td>
 </tr>
 <tr>
 <td>Pass history and published ledgers</td>
@@ -155,7 +157,7 @@
 <h2 id="6-who-processes-it-for-us">6. Who processes it for us</h2>
 <p>We use these providers. Each processes data on our behalf, or under its own terms where it acts as an independent controller:</p>
 <ul>
-<li><strong>Cloudflare</strong> hosts the findings sandbox and the stats API (Workers and their key-value store) and may serve or proxy the site.</li>
+<li><strong>Cloudflare</strong> hosts the findings sandbox and the stats API (Workers and their key-value store) and may serve or proxy the site. To deliver and protect them it processes request data, including your IP address, under its own policies. We have not turned on Workers request logging, and we keep no request logs of our own.</li>
 <li><strong>GitHub</strong> hosts the releases repository, Issues, private advisories and the site (GitHub Pages).</li>
 <li><strong>Vultr</strong> hosts our testnet servers: validators, the reference solver, seed nodes and the stats publisher.</li>
 <li><strong>Discord</strong> hosts the community server.</li>

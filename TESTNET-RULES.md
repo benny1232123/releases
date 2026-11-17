@@ -12,7 +12,7 @@
 
 ## In short
 
-- **What you get.** Testnet work earns credit, and the credit converts to Transit Fabric **alpha on mainnet**. It is not paid in TAO, in dollars or in testnet alpha. Testnet alpha has no value.
+- **What you get.** Testnet work earns credit, and we intend to convert the credit to a gift of Transit Fabric **alpha on mainnet**. Every number, formula, split and schedule on this page is how we currently intend to size any gift; not a promise or entitlement. It is not paid in TAO, in dollars or in testnet alpha. Testnet alpha has no value.
 - **How much.** It's meant to be modest: an average active node operator's share is worth about **one mainnet registration**, so you can start on mainnet.
 - **What it rewards.** It rewards what the testnet has too little of: honest, live sites in new networks and environments, such as a router at home or a node behind NAT. Capacity above a small floor earns nothing extra.
 - **What it is.** We intend to make these allocations if mainnet launches. They are discretionary gifts, not a contract or a debt: see [What an allocation is](#what-an-allocation-is). If mainnet doesn't launch, no allocation follows, and the ledger stays public.
@@ -30,6 +30,8 @@
 - These rules are part of the [Terms of Service](terms.html).
 
 ## The pool
+
+*How we currently intend to size any gift; not a promise or entitlement.*
 
 - **Size.** The pool is two mainnet registrations for every eligible node operator, so the node half averages one registration each.
   - It is capped at the alpha the subnet owner receives in mainnet's first 14 days.
@@ -50,7 +52,7 @@ A track's unspent share moves to the node track.
 ## Who can earn
 
 - **Claimants.** A claimant is one person or team, registered once on the [claim page](claim.html). You list your testnet hotkeys by signing one message with each. Signing a hotkey on the claim page is coming; your points count from tester.2 whenever you add it. Allocations go to your claim address.
-- **Age and attestation.** You must be **18 or older, or the age of majority where you live, whichever is higher**. The claim message you sign says so and accepts the [Terms](terms.html) and [Privacy Policy](privacy.html). Allocations go **only to attested registrants**. If you registered before 18 November 2026, your registration and points are kept, but sign again on the claim page to stay eligible.
+- **Age and attestation.** You must be **18 or older, or the age of majority where you live, whichever is higher**. The claim message you sign says so and accepts the [Terms](terms.html) and [Privacy Policy](privacy.html). Allocations go **only to attested registrants**. If you registered before 17 November 2026, your registration and points are kept, but sign again on the claim page to stay eligible.
 - **At most 3 UIDs per claimant.** For example, one for a single node, one for an OpenWrt router and one for a fleet. One UID can hold all three. A fourth UID, or a UID nobody has claimed, earns nothing. Testnet has only 128 seats.
 - **Credit follows the claimant, not the UID.** Losing a UID to pruning, re-registering or changing hotkeys never erases points you've earned.
 - **Who doesn't earn.**
@@ -59,6 +61,8 @@ A track's unspent share moves to the node track.
   - Someone paid for a specific piece of work, such as a commissioned audit, earns node points like any operator. The paid work itself isn't a finding.
 
 ## Node points
+
+*How we currently intend to size any gift; not a promise or entitlement.*
 
 Points are counted per **site** each week (140 windows), then summed per claimant. A site is a group of one claimant's nodes whose probed endpoints share an IPv4 /24. Every input comes from what validators already commit each window.
 
@@ -144,6 +148,8 @@ Capacity above the base floor appears nowhere. A home router earns almost 3 time
 
 ## How points become alpha
 
+*How we currently intend to size any gift; not a promise or entitlement.*
+
 ```
 claimant's alpha = track pool × claimant's points / all points in that track
 ```
@@ -157,6 +163,8 @@ claimant's alpha = track pool × claimant's points / all points in that track
 - **Example.** 40 claimants hold 30,000 node points together. A claimant with 900 receives 3% of the node pool.
 
 ## Solvers, findings, docs
+
+*How we currently intend to size any gift; not a promise or entitlement.*
 
 - **Solvers.** You earn 1 point for each window your table is fetched on time and graded at least 2% better than the reference, plus 1 point for the best table of the window.
 - **Findings.**
@@ -190,7 +198,7 @@ claimant's alpha = track pool × claimant's points / all points in that track
 
 ## Payout schedule
 
-The schedule we intend to follow. Every part is a discretionary gift (see [What an allocation is](#what-an-allocation-is)).
+*How we currently intend to size any gift; not a promise or entitlement.* Every part is a discretionary gift (see [What an allocation is](#what-an-allocation-is)).
 
 - **The first part,** within 7 days of mainnet start, is **one registration's worth** (or your whole share, if that's smaller). You can use it to register on mainnet: unstake it to TAO for the registration.
 - **The rest** follows in three equal parts, at 30, 60 and 90 days after mainnet start.

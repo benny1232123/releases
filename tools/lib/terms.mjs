@@ -16,7 +16,7 @@ export const TERMS_VERSIONS = ['1'];
  * dated before it stays registered but is flagged `needs_reattest`: not payable until the tester
  * signs the new message. Set it to the day the new claim page is published.
  */
-export const OLD_CLAIMS_BEFORE = '2026-11-18';
+export const OLD_CLAIMS_BEFORE = '2026-11-17';
 
 export const TERMS_URL = 'https://transitfabric.xyz/terms.html';
 export const PRIVACY_URL = 'https://transitfabric.xyz/privacy.html';
