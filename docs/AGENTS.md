@@ -14,6 +14,7 @@ Transit Fabric is a Bittensor subnet for a decentralized network fabric, running
 - Checksums: the `SHA256SUMS` asset on the release. `MANIFEST.json` has the commit and the file list. `latest.json` (a release asset) lists the version, every asset's sha256 and url, the hash of `SHA256SUMS` and the validator set's `validator_set_not_after_block`. It comes from the same place as the files, so it does not replace comparing `SHA256SUMS` with the announced hash.
 - Quick start: https://transitfabric.xyz/quickstart.html. Also the `QUICKSTART.md` and `testers.md` assets. Read the quick start before you act.
 - Known limits: https://transitfabric.xyz/known-limits.html.
+- Operator guide: https://transitfabric.xyz/operator-guide.html. Read it, the testnet rules (https://transitfabric.xyz/testnet-rules.html) and the known limits before you choose a setup.
 - Red-team pack: https://transitfabric.xyz/redteam/index.html. Shadow validator guide: https://transitfabric.xyz/redteam/shadow-validator.html (read-only; never give it a hotkey or wallet, it refuses them).
 
 ## Before you run anything

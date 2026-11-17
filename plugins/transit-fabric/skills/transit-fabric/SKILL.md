@@ -102,3 +102,4 @@ Anything that could be an exploit, or a way to earn more than you carry, never g
 - Agent rules: https://transitfabric.xyz/AGENTS.md
 - Index for agents: https://transitfabric.xyz/llms.txt
 - Quick start: https://transitfabric.xyz/quickstart.html
+- Operator guide: https://transitfabric.xyz/operator-guide.html (read it, the testnet rules https://transitfabric.xyz/testnet-rules.html and https://transitfabric.xyz/known-limits.html before you choose a setup)
