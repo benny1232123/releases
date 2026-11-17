@@ -4,14 +4,15 @@
 <header><a class="brand" href="index.html">Transit Fabric releases</a>
 <nav><a href="index.html">Home</a><a href="https://dashboard.transitfabric.xyz/">Network dashboard</a><a href="quickstart.html">Quick start</a><a href="known-limits.html">Known limits</a><a href="bounty.html">Bounty</a><a href="redteam/index.html">Red team</a><a href="claim.html">Claim credit</a><a href="leaderboard.html">Leaderboard</a><a href="testnet-rules.html">Testnet rules</a></nav></header>
 <main>
-<h1 id="testnet-rewards-proposed-rules">Testnet rewards: proposed
-rules</h1>
+<h1 id="testnet-rewards-rules">Testnet rewards: rules</h1>
 <blockquote>
-<p><strong>Proposed, open for feedback until Tuesday 17 November 2026,
-12:00 UTC.</strong> The rules become final then, and we publish the
-final version here with a list of what changed. If substantive feedback
-arrives late, we may extend the deadline and say so here.</p>
-<p><strong>How to give feedback:</strong></p>
+<p><strong>Final, version 2.1, effective 2026-11-17.</strong> The rules
+were proposed on 14 November 2026 and open for feedback until 17
+November, 12:00 UTC. What changed since the proposal is listed under <a
+href="#what-changed-from-the-proposal-2026-11-14">What changed from the
+proposal</a>. Any later change follows the <a
+href="#changes">Changes</a> rules.</p>
+<p><strong>Questions, or a case these rules don't cover:</strong></p>
 <ul>
 <li>open a <a
 href="https://github.com/transitfabric/releases/issues/new?template=rules-feedback.yml">Testnet
@@ -20,10 +21,8 @@ rules feedback</a> Issue; or</li>
 href="https://submit.transitfabric.xyz">findings sandbox</a> if you have
 no GitHub account.</li>
 </ul>
-<p>Point at the section you're commenting on. Numbers marked
-<em>proposed value</em> are the ones we most want views on.</p>
 </blockquote>
-<p><strong>Proposed rules, version 2.1</strong> (2.1, 2026-11-17: adds the owner-forwarder measurement correction under Fairness rules; it only raises credit). This page will be the
+<p><strong>Rules, version 2.1</strong> (2.1, 2026-11-17: adds the owner-forwarder measurement correction under Fairness rules; it only raises credit). This page is the
 only place that says what testnet work may earn. Other pages link here
 and don't restate it.</p>
 <h2 id="in-short">In short</h2>
@@ -186,7 +185,7 @@ week</h3>
 <li><strong>Uptime.</strong> It was up in at least 90% of the week's
 non-void windows. From 50% to 90%, it earns 5 points instead.</li>
 <li><strong>A capacity test.</strong> It passed at least one capacity
-test, verified at 20 Mb/s or more (<em>proposed value</em>), or 5 Mb/s
+test, verified at 20 Mb/s or more, or 5 Mb/s
 for a router or a node behind NAT.
 <ul>
 <li>A site counts only with a live binding and consent, a fresh signed
@@ -195,7 +194,12 @@ declaration, and a BGP session to another UID's node.</li>
 <li><strong>Honest declarations.</strong> In no window was its verified
 capacity under half of what it declared. Verified capacity here is the figure after any measurement correction (Fairness rules, &ldquo;Measurement corrections&rdquo;).</li>
 <li><strong>A current release.</strong> It ran the current release, or
-the previous one for at most 48 hours after a new one.</li>
+the previous one for at most 48 hours after a new one. This counts only
+once it is measured: nodes report a signed version that validators
+publish per node and window. Until then base points don't depend on the
+release, and the fast-upgrade role isn't scored. The reported version is
+self-declared, so it counts for testnet points only, never for scoring
+or emissions.</li>
 </ul>
 <h3 id="diversity-up-to-6-points-per-site">Diversity: up to 6 points per
 site</h3>
@@ -246,8 +250,11 @@ new OpenWrt target)</td>
 </tbody>
 </table>
 <ul>
-<li><strong>How the bonus scales.</strong> The first 10 sites
-(<em>proposed value</em>) of a kind in a week get the bonus in full.
+<li><strong>Why these bonuses.</strong> The home, NAT and router bonuses
+reward early testnet coverage and engagement. They taper as those sites
+reach their targets, and mainnet favours datacenter capacity.</li>
+<li><strong>How the bonus scales.</strong> The first 10 sites of a kind
+in a week get the bonus in full.
 Beyond that, each gets it scaled by 10 / n.</li>
 <li><strong>Evidence for a router:</strong>
 <ul>
@@ -282,7 +289,8 @@ measurement. We're building it before the bounty opens.</li>
 <tr>
 <td>Fast upgrade</td>
 <td>3</td>
-<td>On a new release within 24 hours of its announcement</td>
+<td>On a new release within 24 hours of its announcement (scored only
+once versions are measured; see &ldquo;A current release&rdquo;)</td>
 </tr>
 </tbody>
 </table>
@@ -319,7 +327,7 @@ at most:</p>
 <ul>
 <li>one single-node site;</li>
 <li>one router site;</li>
-<li>5 fleet sites (<em>proposed value</em>);</li>
+<li>5 fleet sites;</li>
 <li>and no more than 2 sites in one ASN.</li>
 </ul>
 <p>Further sites earn nothing.</p></li>
@@ -418,7 +426,7 @@ table is fetched on time and graded at least 2% better than the
 reference, plus 1 point for the best table of the window.</li>
 <li><strong>Findings.</strong>
 <ul>
-<li>Points use the the <a href="bounty.html">bounty page</a> tiers.
+<li>Points use the <a href="bounty.html">bounty page</a> tiers.
 Reports sent before the bounty opens count, in order of receipt.</li>
 <li>The first valid private report of an exploit earns its tier, even if
 your own nodes profited from it first. Only that profit is removed.</li>
@@ -493,7 +501,7 @@ and 90 days after mainnet start.</p></li>
 <li><p><strong>Founding operators.</strong> A founding operator is a
 claimant who, before mainnet starts:</p>
 <ul>
-<li>held base on a site for 6 weeks (<em>proposed value</em>); and</li>
+<li>held base on a site for 6 weeks; and</li>
 <li>has an accepted finding, or a site with an environment bonus.</li>
 </ul>
 <p>If your first part was less than the burned half of your first
@@ -529,6 +537,33 @@ each ledger names the version it used.</li>
 new country or region. It needs a measured location signal under its own
 ADR, and it comes with the customer front end. Its rule is published
 here before it applies.</li>
+</ul>
+<h3 id="what-changed-from-the-proposal-2026-11-14">What changed from the
+proposal (2026-11-14)</h3>
+<ul>
+<li><strong>Router nodes (2026-11-14).</strong> Router points, base
+included, count from the release that adds router measurement.</li>
+<li><strong>Environment bonuses taper (2026-11-14).</strong> The home,
+NAT and router bonuses reward early coverage and engagement, and taper
+as those sites reach their targets.</li>
+<li><strong>What an allocation is (2026-11-16).</strong> Allocations are
+discretionary rewards, go only to people who may lawfully receive them,
+and come with no warranty. These rules are part of the <a
+href="terms.html">Terms of Service</a>.</li>
+<li><strong>Age and attestation (2026-11-16).</strong> Claimants must be
+18 or older, or the age of majority where they live, and sign an
+attestation on the claim page. Earlier registrants keep their points but
+sign again.</li>
+<li><strong>A current release (2026-11-16).</strong> It counts, and the
+fast-upgrade role is scored, only once versions are measured.</li>
+<li><strong>Measurement corrections (2026-11-17, version 2.1).</strong>
+The owner-forwarder correction under Fairness rules. It only raises
+credit.</li>
+<li><strong>Final values (2026-11-17).</strong> The values marked
+<em>proposed value</em> are final as proposed: the 20 Mb/s capacity
+floor, the first 10 sites of a kind with the full environment bonus, 5
+fleet sites per claimant, and 6 weeks of base for a founding
+operator.</li>
 </ul>
 </main>
 <footer>Testnet subnet 611 only. Never use a mainnet wallet or real TAO.

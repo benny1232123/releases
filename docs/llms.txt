@@ -49,4 +49,4 @@ Full rules for agents: https://transitfabric.xyz/AGENTS.md
 ## Findings sandbox (no GitHub account)
 
 - [Upload page](https://submit.transitfabric.xyz): private, no account, no bounty credit. Agents: `curl -sS -F file=@finding.md -F age_attested=yes -F terms_version=1 https://submit.transitfabric.xyz/upload` (optional `-F attachment=@repro.zip`). `age_attested=yes` states that the human sending it is 18 or older, or the age of majority where they live, whichever is higher, and accepts the [Terms](https://transitfabric.xyz/terms.html) and [Privacy Policy](https://transitfabric.xyz/privacy.html); ask them, never assume it. The reply is JSON with a receipt ID. Limit: 10 uploads a day per address.
-- [Testnet rules (proposed)](https://transitfabric.xyz/testnet-rules.html): what testnet work pays; feedback until 2026-11-17 12:00 UTC.
+- [Testnet rules](https://transitfabric.xyz/testnet-rules.html): what testnet work may earn; final, version 2.1, effective 2026-11-17.
