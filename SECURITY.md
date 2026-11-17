@@ -20,3 +20,7 @@ Include the version, the steps to reproduce, what you expected and what happened
 ## Scope and rewards
 
 Scope, out-of-scope items, tiers and points are on the [bounty page](docs/bounty.html). Testnet only. Never test against mainnet.
+
+## Eligibility and terms
+
+Anyone may report a vulnerability. Points and any awards for it go only to registrants who are 18 or older, or the age of majority where they live, whichever is higher, and who signed the current message on the [claim page](https://transitfabric.xyz/claim.html). Reports are handled under the [Terms of Service](https://transitfabric.xyz/terms.html) and the [Privacy Policy](https://transitfabric.xyz/privacy.html).

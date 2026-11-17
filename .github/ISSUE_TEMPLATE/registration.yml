@@ -7,6 +7,7 @@ body:
     attributes:
       value: |
         Fill this in with the claim page (https://transitfabric.xyz/claim.html), which signs a message with your wallet. Signing moves no funds. Never paste a seed phrase or a private key.
+        The message attests that you are 18 or older, or the age of majority where you live, whichever is higher, and accepts the Terms (https://transitfabric.xyz/terms.html) and Privacy Policy (https://transitfabric.xyz/privacy.html).
         If you want the registration kept private, use the private advisory instead.
   - type: input
     id: github
@@ -24,7 +25,7 @@ body:
     id: message
     attributes:
       label: Message
-      description: "Exactly: Transit Fabric bounty: github=<user>, address=<ss58>, date=<YYYY-MM-DD>"
+      description: "Exactly the claim page's message: Transit Fabric bounty v2: github=<user>, address=<ss58>, date=<YYYY-MM-DD>, age=18+, terms=<version>. I am 18 or older, ... version <version>."
       render: text
     validations:
       required: true

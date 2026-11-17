@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy Policy | Transit Fabric testnet 611</title><link rel="stylesheet" href="style.css"><link rel="icon" type="image/png" href="logo.png"><meta name="robots" content="noindex"></head><body>
+<header><a class="brand" href="index.html">Transit Fabric releases</a>
+<nav><a href="index.html">Home</a><a href="quickstart.html">Quick start</a><a href="known-limits.html">Known limits</a><a href="bounty.html">Bounty</a><a href="redteam/index.html">Red team</a><a href="claim.html">Claim credit</a><a href="leaderboard.html">Leaderboard</a><a href="testnet-rules.html">Testnet rules</a></nav></header>
+<main>
+<p class="warn"><strong>DRAFT, not legal advice, needs review by qualified counsel before publication.</strong> This text is not in force.</p>
+<h1 id="transit-fabric-privacy-policy">Transit Fabric Privacy Policy</h1>
+<blockquote>
+<p><strong>DRAFT, not legal advice, needs review by qualified counsel before publication.</strong></p>
+<p>Version 1 (draft of 2026-11-16). Not in force. Published together with the <a href="terms.html">Terms of Service</a>, version 1.</p>
+</blockquote>
+<p>This policy explains what personal data the Transit Fabric testnet services collect, why, and what you can do about it. The services are the site at transitfabric.xyz, the claim page, the findings sandbox at submit.transitfabric.xyz, the stats API at api.transitfabric.xyz, the release files at github.com/transitfabric/releases, and testnet subnet 611 (the "Services").</p>
+<h2 id="1-who-we-are">1. Who we are</h2>
+<p>The controller is TransitFabric.xyz ("we", "us"). Contact for anything in this policy: <a href="mailto:privacy@transitfabric.xyz">privacy@transitfabric.xyz</a>.</p>
+<h2 id="2-the-short-version">2. The short version</h2>
+<ul>
+<li>We collect as little as we can. We <strong>never ask for your name, date of birth, postal address or government ID</strong>.</li>
+<li><strong>No tracking and no analytics.</strong> Our pages set no cookies, run no analytics or advertising scripts, record no sessions (no session replay) and capture no keystrokes, and load nothing from third parties: no web fonts, no CDNs. Fonts are your device's own.</li>
+<li><strong>No email from us.</strong> We send no marketing email and keep no mailing list.</li>
+<li>We <strong>never publish an IP address</strong>. Locations we publish are coarse: a country or first-level region, or a circle centred on a whole degree, never a city.</li>
+<li>Some data is public by nature and outside our control: blockchain data, and anything you post in a public GitHub Issue.</li>
+</ul>
+<h2 id="3-what-we-collect-by-service">3. What we collect, by service</h2>
+<h3 id="31-the-claim-page-bounty-registration">3.1 The claim page (bounty registration)</h3>
+<p>The page runs in your browser and sends nothing anywhere. You then file the result yourself, either as a public GitHub Issue or as a private GitHub security advisory. A registration holds:</p>
+<ul>
+<li>your <strong>GitHub login</strong>;</li>
+<li>your <strong>SS58 address</strong> (a hotkey or coldkey public address);</li>
+<li>the signed message: your login, address, the date, <code>age=18+</code>, the terms version and the attestation sentence;</li>
+<li>the <strong>signature</strong>.</li>
+</ul>
+<p>A public Issue is visible to anyone. A private advisory is visible to you and the repository's maintainers.</p>
+<h3 id="32-the-findings-sandbox-submittransitfabricxyz">3.2 The findings sandbox (submit.transitfabric.xyz)</h3>
+<ul>
+<li><strong>Signed finding form:</strong> your GitHub login and registered SS58 address, the finding's fields (title, version, severity, tier, component, steps, expected, actual, details), the proof-of-concept zip, the signed message and signature, a receipt, and the time received.</li>
+<li><strong>Plain upload:</strong> your markdown file, an optional zip, and an optional contact (a Discord name or an email address, only if you choose to give one).</li>
+<li><strong>Age attestation:</strong> with both, we store only <code>{ age_attested: true, terms_version, ts }</code>, the fact that you ticked the box, which terms version, and when. <strong>No date of birth.</strong></li>
+<li><strong>IP address:</strong> used, but not stored with your submission. The Worker uses your address (an IPv4 address, or an IPv6 /64) in memory as a rate-limit key, and keeps a daily counter whose key is a hash of that address, the day and a secret salt. The counter expires after 2 days.</li>
+</ul>
+<p>Submissions are private: read by the maintainers, never served back to the public. Don't put keys, seed phrases, IP addresses or hostnames in what you send.</p>
+<h3 id="33-eligibility-and-the-pass-history">3.3 Eligibility and the pass history</h3>
+<p>To decide a registrant's bounty tier, our tools link your registered address to <strong>public chain data</strong> (the UIDs whose hotkey or coldkey it is) and to the <strong>validators' published test results</strong> for the nodes bound to those UIDs. We keep a history of which node keys passed under which UID, per window.</p>
+<h3 id="34-running-a-node-solver-or-validator">3.4 Running a node, solver or validator</h3>
+<p>When you take part in the network, other participants and validators necessarily see some data:</p>
+<ul>
+<li><strong>Your node's public key and derived overlay address</strong>, and your <strong>hotkey binding</strong> (signed by you and committed on chain).</li>
+<li><strong>Your node's IP address and port</strong>, seen by the validators and peers it connects to. A public node's endpoint is listed in the validators' peer directory, which participants exchange. Validators run by other operators are independent; they decide for themselves what they keep.</li>
+<li><strong>Measurements:</strong> round-trip times, capacity tests, uptime and the route tables you serve or carry.</li>
+<li><strong>Fault reports:</strong> if your node runs System One (<code>fabric-sense</code>), it may send validators a signed fault report: a symptom code, the software version and commit, the node kind and platform, and for a crash an assertion hash. No IP address and no personal data. Validators publish counts only.</li>
+</ul>
+<h3 id="35-the-stats-api-and-coarse-location">3.5 The stats API and coarse location</h3>
+<p>The stats API publishes testnet data that a majority of validators agree on. It <strong>never publishes an IP address</strong> (a node's internet or overlay address) and <strong>never a coldkey</strong>. UIDs and hotkeys are public on chain; node keys are shown as a 16-character prefix.</p>
+<p>Location is derived from IP addresses, coarsely:</p>
+<ul>
+<li><strong>Country and first-level region</strong> (a state or province), looked up on our publisher in a local copy of the DB-IP Lite database. Only for addresses already public: a public node's endpoint in the peer directory, the seed nodes a release lists, and the axon address a UID publishes on chain.</li>
+<li><strong>A validated region:</strong> a circle centred on a whole degree of latitude and longitude, with a radius of tens to thousands of km, worked out from round-trip times alone, never from an address.</li>
+<li>Never at city level, never a street address.</li>
+</ul>
+<p>When you call the API, the Worker uses your address only in memory as a rate-limit key and keeps no request log.</p>
+<h3 id="36-the-site-transitfabricxyz-and-the-releases-repository">3.6 The site (transitfabric.xyz) and the releases repository</h3>
+<p>The site is static. It sets no cookies, runs no analytics, records no sessions and captures no keystrokes. The claim page's wallet libraries are served from the site itself, and the page makes no network request. The host serving the pages (see section 6) receives your IP address and browser details as part of serving any web request.</p>
+<h3 id="37-public-records-we-publish">3.7 Public records we publish</h3>
+<ul>
+<li>The <strong>leaderboard</strong> and the weekly <strong>ledger</strong> show your GitHub login or the handle you registered with, and your points. They contain no IP addresses.</li>
+<li>With your permission, we credit you by name or handle for a fixed finding.</li>
+</ul>
+<h3 id="38-discord">3.8 Discord</h3>
+<p>If you join the Transit Fabric Discord, Discord processes your account data under its own privacy policy. We see your Discord username, your messages in our server, and the roles we give you (such as Founding Tester). Our bots post announcements, including a digest of public GitHub Issue titles and links; they don't collect data from members.</p>
+<h3 id="39-blockchain-data">3.9 Blockchain data</h3>
+<p>Hotkeys, coldkeys, registrations, weights, commitments and stake on the Bittensor testnet are <strong>public and permanent by design</strong>. We read them; we don't control them and can't delete them.</p>
+<h2 id="4-why-we-use-it-and-our-legal-bases-gdpr-article-6">4. Why we use it, and our legal bases (GDPR Article 6)</h2>
+<table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Data</th>
+<th>Legal basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registering you, checking your signature and age attestation, recording credit and points</td>
+<td>GitHub login, SS58 address, signed message, attestation record</td>
+<td>Performance of a contract with you (Art. 6(1)(b))</td>
+</tr>
+<tr>
+<td>Receiving, triaging and fixing findings; crediting them</td>
+<td>Finding fields, zip, receipt</td>
+<td>Contract (Art. 6(1)(b)); our legitimate interest in securing the software (Art. 6(1)(f))</td>
+</tr>
+<tr>
+<td>Replying to a plain upload</td>
+<td>Optional contact</td>
+<td>Your consent, by giving it (Art. 6(1)(a)); you may withdraw it</td>
+</tr>
+<tr>
+<td>Rate limits, abuse prevention and security of the Services</td>
+<td>IP address (in memory), hashed daily counter</td>
+<td>Legitimate interest in keeping the Services available and safe (Art. 6(1)(f))</td>
+</tr>
+<tr>
+<td>Running and measuring the network; publishing aggregate testnet statistics</td>
+<td>Node keys, endpoints, measurements, coarse location</td>
+<td>Legitimate interest in operating a measurable network (Art. 6(1)(f)); contract, for participants (Art. 6(1)(b))</td>
+</tr>
+<tr>
+<td>Keeping minors out; sanctions and tax compliance</td>
+<td>Attestation record; what the law requires</td>
+<td>Legal obligation (Art. 6(1)(c)); legitimate interest (Art. 6(1)(f))</td>
+</tr>
+<tr>
+<td>Public credit for a finding</td>
+<td>Your name or handle</td>
+<td>Your consent (Art. 6(1)(a))</td>
+</tr>
+</tbody>
+</table>
+<p>Where we rely on legitimate interests, you can object (section 8).</p>
+<h2 id="5-how-long-we-keep-it">5. How long we keep it</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Kept</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rate-limit counters (hashed)</td>
+<td>2 days</td>
+</tr>
+<tr>
+<td>IP addresses at our Workers</td>
+<td>Not stored</td>
+</tr>
+<tr>
+<td>Registrations</td>
+<td>While the program runs and for [RETENTION PERIOD] after its last payout or allocation, to settle credit and appeals. A public Issue stays on GitHub until it is deleted</td>
+</tr>
+<tr>
+<td>Findings, uploads, zips and attestation records</td>
+<td>While the program runs and for [RETENTION PERIOD] after it ends, then deleted, except what a fix, a regression test or a threat-model entry needs (with no personal data)</td>
+</tr>
+<tr>
+<td>Pass history and published ledgers</td>
+<td>For the life of the program; published ledgers stay public</td>
+</tr>
+<tr>
+<td>Optional contact on an upload</td>
+<td>Until the finding is closed, then deleted</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-who-processes-it-for-us">6. Who processes it for us</h2>
+<p>We use these providers. Each processes data on our behalf, or under its own terms where it acts as an independent controller:</p>
+<ul>
+<li><strong>Cloudflare</strong> hosts the findings sandbox and the stats API (Workers and their key-value store) and may serve or proxy the site.</li>
+<li><strong>GitHub</strong> hosts the releases repository, Issues, private advisories and the site (GitHub Pages).</li>
+<li><strong>Vultr</strong> hosts our testnet servers: validators, the reference solver, seed nodes and the stats publisher.</li>
+<li><strong>Discord</strong> hosts the community server.</li>
+</ul>
+<p>We don't sell personal data and we don't share it for advertising.</p>
+<h2 id="7-international-transfers">7. International transfers</h2>
+<p>Our providers are based in, or process data in, the United States and other countries. Where personal data from the EEA, the UK or Switzerland is transferred to a country without an adequacy decision, we rely on the provider's Standard Contractual Clauses or its participation in the EU-U.S. Data Privacy Framework (and its UK and Swiss extensions), as applicable.</p>
+<h2 id="8-your-rights">8. Your rights</h2>
+<p>Depending on where you live (in the EEA and UK under the GDPR, and under similar laws elsewhere), you have the right to:</p>
+<ul>
+<li><strong>access</strong> the personal data we hold about you;</li>
+<li><strong>correct</strong> it;</li>
+<li><strong>delete</strong> it ("right to be forgotten");</li>
+<li><strong>restrict</strong> or <strong>object to</strong> our use of it, including use based on legitimate interests;</li>
+<li><strong>data portability</strong>;</li>
+<li><strong>withdraw consent</strong> at any time, without affecting earlier processing;</li>
+<li><strong>complain</strong> to your data protection supervisory authority.</li>
+</ul>
+<p>Write to <a href="mailto:privacy@transitfabric.xyz">privacy@transitfabric.xyz</a>. We may ask you to prove you control the GitHub account or sign a message with the registered address. We answer within one month.</p>
+<p>Limits: we can't delete blockchain data, data held by independent validators, or what others copied from a public Issue. Deleting your registration ends your eligibility for credit.</p>
+<h2 id="9-children">9. Children</h2>
+<p>The Services are <strong>not for anyone under 18</strong>, or under the age of majority where they live if that is higher. Every registration, finding and upload requires an attestation that you meet this age. We don't knowingly collect data from anyone younger. If we learn that we have, we delete it and close the registration. Tell us at <a href="mailto:privacy@transitfabric.xyz">privacy@transitfabric.xyz</a> if you believe this has happened.</p>
+<h2 id="10-security">10. Security</h2>
+<p>Submissions are stored privately and read only by maintainers with an access token. Signatures are checked on receipt. Client addresses are not stored. No system is perfectly secure; report a vulnerability through a private GitHub security advisory.</p>
+<h2 id="11-changes">11. Changes</h2>
+<p>Each version of this policy has a number and a date. We post a changed version on the site and announce material changes in the Transit Fabric Discord and on the releases repository before they apply.</p>
+</main>
+<footer>Testnet subnet 611 only. Never use a mainnet wallet or real TAO.
+<a href="https://github.com/transitfabric/releases/releases">Releases</a> ·
+<a href="https://github.com/transitfabric/releases/issues">Issues</a> ·
+<a href="https://github.com/transitfabric/releases/security/advisories/new">Report a vulnerability</a> ·
+<a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></footer>
+</body></html>

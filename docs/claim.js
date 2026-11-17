@@ -1,23 +1,30 @@
 // Transit Fabric claim page. Signs one text message with a browser wallet (signRaw, type "bytes").
 // No transaction, no network request. The wallet libraries are the three pinned, SRI-checked scripts
-// in claim.html (@polkadot/util 14.0.3, @polkadot/util-crypto 14.0.3, @polkadot/extension-dapp 0.64.1).
+// in claim.html (@polkadot/util 14.0.3, @polkadot/util-crypto 14.0.3, @polkadot/extension-dapp 0.64.1),
+// served from this site (docs/vendor/polkadot).
+//
+// The message is v2: it carries the age attestation and the Terms/Privacy version the signer accepts
+// (the same text as tools/lib/terms.mjs and the maintainers' checker). The page builds it only when
+// the attestation box is ticked.
 (function () {
   'use strict';
   if (window.top !== window.self) { document.body.textContent = 'This page must not be framed.'; return; }
   var $ = function (id) { return document.getElementById(id); };
   var U = window.polkadotUtil, C = window.polkadotUtilCrypto, D = window.polkadotExtensionDapp;
   var GH = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/;
+  var TERMS = '1';
+  function attestation() { return 'I am 18 or older, or the age of majority where I live, whichever is higher, and I accept the Transit Fabric Terms of Service and Privacy Policy version ' + TERMS + '.'; }
   var state = { accounts: [], signature: null };
 
   function say(text, cls) { var s = $('status'); s.textContent = text; s.className = cls || ''; }
   function today() { return new Date().toISOString().slice(0, 10); }
   function message() {
     var gh = $('gh').value.trim(), addr = $('acct').value;
-    return 'Transit Fabric bounty: github=' + gh + ', address=' + addr + ', date=' + today();
+    return 'Transit Fabric bounty v2: github=' + gh + ', address=' + addr + ', date=' + today() + ', age=18+, terms=' + TERMS + '. ' + attestation();
   }
   function refresh() {
-    var gh = $('gh').value.trim(), addr = $('acct').value, ok = GH.test(gh) && !!addr;
-    $('msg').value = ok ? message() : (gh && !GH.test(gh) ? 'That is not a valid GitHub username.' : 'Fill in your username and connect a wallet.');
+    var gh = $('gh').value.trim(), addr = $('acct').value, ready = GH.test(gh) && !!addr, ok = ready && $('age').checked;
+    $('msg').value = ok ? message() : (gh && !GH.test(gh) ? 'That is not a valid GitHub username.' : !ready ? 'Fill in your username and connect a wallet.' : 'Confirm your age and the terms in step 3.');
     $('sign').disabled = !ok;
     state.signature = null;
     $('claim').value = ''; $('check').textContent = ''; $('copy').disabled = true; $('issue').hidden = true;
@@ -25,6 +32,8 @@
 
   $('gh').addEventListener('input', refresh);
   $('acct').addEventListener('change', refresh);
+  $('age').addEventListener('change', refresh);
+  $('termsv').textContent = TERMS;
 
   $('connect').addEventListener('click', async function () {
     if (!D || !U || !C) { say('The wallet libraries did not load. Check your connection, or use the btcli way below.', 'bad'); return; }
@@ -50,6 +59,7 @@
   });
 
   $('sign').addEventListener('click', async function () {
+    if (!$('age').checked) { say('Confirm your age and the terms first.', 'bad'); return; }
     var addr = $('acct').value, msg = message();
     $('sign').disabled = true;
     say('Approve the signature request in your wallet. It shows plain text and no transaction.');
@@ -83,9 +93,9 @@
   });
 
   refresh();
-  var tmpl = 'btcli wallet sign --wallet-name <your wallet> --no-use-hotkey --message \'<message from step 3>\'';
+  var tmpl = 'btcli wallet sign --wallet-name <your wallet> --no-use-hotkey --message \'<message from step 4>\'';
   $('btcli').textContent = tmpl;
-  [$('gh'), $('acct')].forEach(function (el) { el.addEventListener('input', function () {
-    if (state.accounts.length && GH.test($('gh').value.trim())) $('btcli').textContent = 'btcli wallet sign --wallet-name <your wallet> --no-use-hotkey --message \'' + message() + '\'';
+  [$('gh'), $('acct'), $('age')].forEach(function (el) { el.addEventListener('input', function () {
+    if (state.accounts.length && GH.test($('gh').value.trim()) && $('age').checked) $('btcli').textContent = 'btcli wallet sign --wallet-name <your wallet> --no-use-hotkey --message \'' + message() + '\'';
   }); });
 })();

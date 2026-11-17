@@ -37,13 +37,23 @@ This is a community program for early testers. It isn't a big-money bounty.
 - Running a node or solver that stays live and scored: points per week it stays up.
 - Onboarding feedback, and documentation fixes that get merged.
 
-**Small TAO tips:** the top findings may also get a small tip in real TAO, at our discretion.
+**Small TAO tips:** the top findings may also receive a small tip in real TAO, as a discretionary gift (see below).
 
-**Future alpha:** what testnet work pays is set by the [testnet rules](https://transitfabric.xyz/testnet-rules.html) (`TESTNET-RULES.md`). That page is the only place that says what is paid.
+**Future alpha:** what testnet work may earn is set by the [testnet rules](https://transitfabric.xyz/testnet-rules.html) (`TESTNET-RULES.md`). That page is the only place that describes it.
 
 **Recognition:** a public leaderboard on this repository, a Founding Tester role in our Discord, and credit in the release notes.
 
 **No fee.** Registering and submitting are free. Signing moves no funds.
+
+## Who may receive awards, and what they are
+
+- **Age.** You must be **18 or older, or the age of majority where you live, whichever is higher**. Your registration on the claim page says so in the message you sign. We never ask for your date of birth.
+- **Only attested registrants.** Points, tips and any mainnet-alpha allocation go only to registrants who signed the current claim message, which carries the age attestation and accepts the [Terms](https://transitfabric.xyz/terms.html) and [Privacy Policy](https://transitfabric.xyz/privacy.html). If you registered before 18 November 2026, your registration is kept, but sign again on the claim page to stay eligible.
+- **A discretionary gift.** Any award (points, a tip, an allocation) is a gratuitous, discretionary gift for all purposes. It is not payment for services, not wages, and not consideration under any contract. No right or claim arises from points, a registration or any published schedule.
+- **Not guaranteed.** We may withhold, reduce, delay or cancel any award, including for legal, sanctions or compliance reasons, or if we can't confirm you may lawfully receive it.
+- **Only where lawful.** Awards go only to people legally able to receive them where they live and under applicable sanctions. You are solely responsible for any taxes and reporting.
+- **No warranty** about value, transferability or tax treatment.
+- **Network emissions are separate.** Emissions on the subnet are distributed by the Bittensor protocol, under its own consensus, from validators' weights. We don't pay, hold or guarantee them.
 
 ## Who can earn points for findings
 
@@ -109,6 +119,7 @@ Don't open public Issues for security issues or exploits.
 - Keep within your open-findings limit: 5 for a verified tester, 1 for everyone else.
 - Low-effort reports are closed with a reason.
 - Don't disrupt other testers beyond the minimum needed to demonstrate an issue. Stop and report as soon as you've shown it.
-- The first valid report of an issue wins the reward.
+- The first valid report of an issue earns the points.
 - Disclosure: keep security findings private until they're fixed. After that we give public credit, with your permission.
-- We add a regression test and a threat-model entry for every paid finding.
+- We add a regression test and a threat-model entry for every finding that earns points.
+- These rules are part of the [Terms of Service](https://transitfabric.xyz/terms.html).
