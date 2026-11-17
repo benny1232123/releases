@@ -20,6 +20,8 @@ Transit Fabric is a Bittensor subnet for a decentralized network fabric. It is t
 
 This is a community program for early testers. It isn't a big-money bounty.
 
+*How we currently intend to size any gift; not a promise or entitlement.*
+
 **Points for each valid finding**
 
 | Tier | What it means | Points |
@@ -48,7 +50,7 @@ This is a community program for early testers. It isn't a big-money bounty.
 ## Who may receive awards, and what they are
 
 - **Age.** You must be **18 or older, or the age of majority where you live, whichever is higher**. Your registration on the claim page says so in the message you sign. We never ask for your date of birth.
-- **Only attested registrants.** Points, tips and any mainnet-alpha allocation go only to registrants who signed the current claim message, which carries the age attestation and accepts the [Terms](https://transitfabric.xyz/terms.html) and [Privacy Policy](https://transitfabric.xyz/privacy.html). If you registered before 18 November 2026, your registration is kept, but sign again on the claim page to stay eligible.
+- **Only attested registrants.** Points, tips and any mainnet-alpha allocation go only to registrants who signed the current claim message, which carries the age attestation and accepts the [Terms](https://transitfabric.xyz/terms.html) and [Privacy Policy](https://transitfabric.xyz/privacy.html). If you registered before 17 November 2026, your registration is kept, but sign again on the claim page to stay eligible.
 - **A discretionary gift.** Any award (points, a tip, an allocation) is a gratuitous, discretionary gift for all purposes. It is not payment for services, not wages, and not consideration under any contract. No right or claim arises from points, a registration or any published schedule.
 - **Not guaranteed.** We may withhold, reduce, delay or cancel any award, including for legal, sanctions or compliance reasons, or if we can't confirm you may lawfully receive it.
 - **Only where lawful.** Awards go only to people legally able to receive them where they live and under applicable sanctions. You are solely responsible for any taxes and reporting.
