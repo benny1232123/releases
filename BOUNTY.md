@@ -16,11 +16,38 @@ Transit Fabric is a Bittensor subnet for a decentralized network fabric. It is t
 - Anything on mainnet (finney). Never use mainnet keys or real TAO.
 - Issues already listed in our published threat model as open or accepted, unless you show a new way to exploit them or a bigger payoff.
 
+## Safe harbor for good-faith security research
+
+When you research security in good faith and within this page's scope and rules, we consider your research:
+
+- **authorized** under the Computer Fraud and Abuse Act and similar laws, and we will not bring legal action against you, or refer you to law enforcement, for it, including for accidental, good-faith breaches of these rules;
+- **exempt from the restrictions in our [Terms of Service](https://transitfabric.xyz/terms.html)** that would otherwise forbid it. We waive those restrictions on a limited basis, for research done under these rules only;
+- **lawful, helpful to the security of the network, and done in good faith.**
+
+If a third party brings legal action against you for research that followed these rules, we will make it known that your research was authorized by us.
+
+**What this covers.** Testnet subnet 611 and our testnet infrastructure (our validators, the reference solver, our seed nodes, the findings sandbox, the stats API and this site), as [Scope](#scope) defines.
+
+**What it doesn't cover.**
+- Bittensor mainnet (finney), and other subnets.
+- Other people's nodes, beyond what these rules allow (the minimum needed to demonstrate an issue).
+- Denial of service against shared infrastructure.
+- Social engineering, phishing and physical attacks.
+- Third-party services: Cloudflare, GitHub, Discord and Vultr. Their own rules apply to them, and we can't authorize research against them.
+
+**Your part.**
+- Follow these rules and the law that applies to you.
+- If you reach data that isn't yours (anyone's keys, personal data, or private submissions), stop, report it to us at once, and don't keep, copy or share it.
+- Keep the finding private until it is fixed.
+- If you're unsure whether something is in scope, ask through a [private advisory](https://github.com/transitfabric/releases/security/advisories/new) before you go further.
+
+This section is separate from, and not the same as, any whitehat or safe-harbor framework of other organizations. Adapted from the [disclose.io](https://disclose.io) safe harbor terms (CC0 1.0).
+
 ## Rewards: points, small TAO tips, and recognition
 
 This is a community program for early testers. It isn't a big-money bounty.
 
-*How we currently intend to size any gift; not a promise or entitlement.*
+*How we currently intend to size any discretionary reward; not a promise or entitlement.*
 
 **Points for each valid finding**
 
@@ -39,7 +66,7 @@ This is a community program for early testers. It isn't a big-money bounty.
 - Running a node or solver that stays live and scored: points per week it stays up.
 - Onboarding feedback, and documentation fixes that get merged.
 
-**Small TAO tips:** the top findings may also receive a small tip in real TAO, as a discretionary gift (see below).
+**Small TAO tips:** the top findings may also receive a small tip in real TAO, as a discretionary reward (see below).
 
 **Future alpha:** what testnet work may earn is set by the [testnet rules](https://transitfabric.xyz/testnet-rules.html) (`TESTNET-RULES.md`). That page is the only place that describes it.
 
@@ -51,7 +78,7 @@ This is a community program for early testers. It isn't a big-money bounty.
 
 - **Age.** You must be **18 or older, or the age of majority where you live, whichever is higher**. Your registration on the claim page says so in the message you sign. We never ask for your date of birth.
 - **Only attested registrants.** Points, tips and any mainnet-alpha allocation go only to registrants who signed the current claim message, which carries the age attestation and accepts the [Terms](https://transitfabric.xyz/terms.html) and [Privacy Policy](https://transitfabric.xyz/privacy.html). If you registered before 17 November 2026, your registration is kept, but sign again on the claim page to stay eligible.
-- **A discretionary gift.** Any award (points, a tip, an allocation) is a gratuitous, discretionary gift for all purposes. It is not payment for services, not wages, and not consideration under any contract. No right or claim arises from points, a registration or any published schedule.
+- **A discretionary reward.** Any award (points, a tip, an allocation) is a discretionary reward, given at our sole discretion. No entitlement or claim arises, and no contract is formed, from points, a registration or any published schedule.
 - **Not guaranteed.** We may withhold, reduce, delay or cancel any award, including for legal, sanctions or compliance reasons, or if we can't confirm you may lawfully receive it.
 - **Only where lawful.** Awards go only to people legally able to receive them where they live and under applicable sanctions. You are solely responsible for any taxes and reporting.
 - **No warranty** about value, transferability or tax treatment.
