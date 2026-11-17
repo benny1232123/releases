@@ -31,3 +31,7 @@ Ordinary bugs go in a public Issue. Peering requests use the Peering request for
 - Do not disrupt other testers beyond the minimum needed to show a problem.
 - Never post private keys, seed phrases, wallet files, IP addresses or hostnames you do not own. Remove them from logs.
 - Maintainers may edit or close anything that breaks these rules.
+
+## Terms
+
+Contributions and reports are covered by the [Terms of Service](https://transitfabric.xyz/terms.html) and the [Privacy Policy](https://transitfabric.xyz/privacy.html). Points and any awards need a registration on the claim page, which attests that you are 18 or older, or the age of majority where you live, whichever is higher.

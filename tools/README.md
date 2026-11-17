@@ -1,6 +1,8 @@
 # verify-claim
 
-Checks a bounty registration from the [claim page](https://transitfabric.xyz/claim.html): a signature over the message `Transit Fabric bounty: github=<user>, address=<ss58>, date=<YYYY-MM-DD>`. It prints `valid` or `invalid` and exits 0 or 1. It makes no network requests.
+Checks a bounty registration from the [claim page](https://transitfabric.xyz/claim.html): a signature over the message `Transit Fabric bounty v2: github=<user>, address=<ss58>, date=<YYYY-MM-DD>, age=18+, terms=<version>. I am 18 or older, or the age of majority where I live, whichever is higher, and I accept the Transit Fabric Terms of Service and Privacy Policy version <version>.` It prints `valid` or `invalid` and exits 0 or 1. It makes no network requests.
+
+The old message, `Transit Fabric bounty: github=<user>, address=<ss58>, date=<YYYY-MM-DD>`, has no age attestation. It is valid only when dated before the switch (`OLD_CLAIMS_BEFORE` in `lib/terms.mjs`), and is then reported as needing re-attestation: the registration is kept, but it isn't eligible for awards until its owner signs the current message.
 
 It uses `signatureVerify` from `@polkadot/util-crypto` (pinned to 14.0.3). A browser wallet signs `<Bytes>` + message + `</Bytes>`, and so does `btcli wallet sign` (checked with btcli 9.23.2); a signature over the bare message is accepted too.
 
@@ -10,7 +12,7 @@ From a clone of this repository:
 
 ```sh
 npx -y -p @polkadot/util-crypto@14.0.3 -p @polkadot/util@14.0.3 -p @polkadot/keyring@14.0.3 \
-  node tools/verify-claim.mjs --message 'Transit Fabric bounty: github=octocat, address=<ss58>, date=2026-11-12' \
+  node tools/verify-claim.mjs --message 'Transit Fabric bounty v2: github=octocat, address=<ss58>, date=2026-11-20, age=18+, terms=1. I am 18 or older, ...' \
   --address <ss58> --signature 0x<hex>
 ```
 
@@ -25,7 +27,7 @@ Without npx: `cd tools && npm ci && node verify-claim.mjs --claim claim.txt`.
 
 ## Test it
 
-`--self-test` makes a throwaway sr25519 key (never stored), signs a message the way the extension does, and checks that the right signature passes and that a changed name, a changed date, another account, a flipped byte and a malformed message all fail:
+`--self-test` makes a throwaway sr25519 key (never stored), signs a message the way the extension does, and checks that the right signature passes and that a changed name, a changed date, another account, a flipped byte, an edited attestation and a malformed message all fail, and that an old-format claim passes only before the switch, flagged for re-attestation:
 
 ```sh
 npx -y -p @polkadot/util-crypto@14.0.3 -p @polkadot/util@14.0.3 -p @polkadot/keyring@14.0.3 \

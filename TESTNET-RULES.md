@@ -8,17 +8,26 @@
 >
 > Point at the section you're commenting on. Numbers marked *proposed value* are the ones we most want views on.
 
-**Proposed rules, version 2.** This page will be the only place that says what testnet work pays. Other pages link here and don't restate it.
+**Proposed rules, version 2.** This page will be the only place that says what testnet work may earn. Other pages link here and don't restate it.
 
 ## In short
 
 - **What you get.** Testnet work earns credit, and the credit converts to Transit Fabric **alpha on mainnet**. It is not paid in TAO, in dollars or in testnet alpha. Testnet alpha has no value.
 - **How much.** It's meant to be modest: an average active node operator's share is worth about **one mainnet registration**, so you can start on mainnet.
-- **What it pays for.** It pays for what the testnet has too little of: honest, live sites in new networks and environments, such as a router at home or a node behind NAT. Capacity above a small floor earns nothing extra.
-- **Our commitment.** This is a commitment. Its only condition is that mainnet launches. If mainnet doesn't launch, nothing is owed, and the ledger stays public.
+- **What it rewards.** It rewards what the testnet has too little of: honest, live sites in new networks and environments, such as a router at home or a node behind NAT. Capacity above a small floor earns nothing extra.
+- **What it is.** We intend to make these allocations if mainnet launches. They are discretionary gifts, not a contract or a debt: see [What an allocation is](#what-an-allocation-is). If mainnet doesn't launch, no allocation follows, and the ledger stays public.
 - **When it counts.**
   - Credit counts from the **tester.2 release (12 November 2026) until mainnet starts**.
   - Enrolment never closes. Joining late only costs you the weeks you missed.
+
+## What an allocation is
+
+- **A discretionary gift.** Any allocation, point or tip under these rules is a gratuitous, discretionary gift for all purposes. It is not payment for services, not wages, and not consideration under any contract. No right or claim arises from points, a registration, a ledger, or any schedule, formula or example on this page. This page describes how we intend to exercise that discretion.
+- **Not guaranteed.** We may withhold, reduce, delay or cancel any allocation, including for legal, sanctions or compliance reasons, or if we can't confirm the recipient may lawfully receive it.
+- **Only where lawful.** Allocations go only to people legally able to receive them where they live and under applicable sanctions. The recipient is solely responsible for any taxes and reporting.
+- **No warranty** about value, transferability or tax treatment.
+- **Network emissions are separate.** Emissions on the subnet are distributed by the Bittensor protocol, under its own consensus, from validators' weights. We don't pay, hold or guarantee them.
+- These rules are part of the [Terms of Service](terms.html).
 
 ## The pool
 
@@ -29,7 +38,7 @@
   - Both numbers are the median over the first 24 hours after mainnet starts, so the rush of registrations at launch doesn't set the price.
 - **Eligible node operator.** A claimant who held base (below) on at least one site for at least one week by mainnet start.
 
-| Track | Share of the pool | Pays for |
+| Track | Share of the pool | Rewards |
 |---|---|---|
 | Nodes | 50% | Sites that stay up, declare honestly and are peered, weighted toward the networks and environments the testnet lacks |
 | Findings | 30% | Valid findings, by the tiers in the [bounty page](bounty.html) |
@@ -40,7 +49,8 @@ A track's unspent share moves to the node track.
 
 ## Who can earn
 
-- **Claimants.** A claimant is one person or team, registered once on the [claim page](claim.html). You list your testnet hotkeys by signing one message with each. Signing a hotkey on the claim page is coming; your points count from tester.2 whenever you add it. Rewards go to your claim address.
+- **Claimants.** A claimant is one person or team, registered once on the [claim page](claim.html). You list your testnet hotkeys by signing one message with each. Signing a hotkey on the claim page is coming; your points count from tester.2 whenever you add it. Allocations go to your claim address.
+- **Age and attestation.** You must be **18 or older, or the age of majority where you live, whichever is higher**. The claim message you sign says so and accepts the [Terms](terms.html) and [Privacy Policy](privacy.html). Allocations go **only to attested registrants**. If you registered before 18 November 2026, your registration and points are kept, but sign again on the claim page to stay eligible.
 - **At most 3 UIDs per claimant.** For example, one for a single node, one for an OpenWrt router and one for a fleet. One UID can hold all three. A fourth UID, or a UID nobody has claimed, earns nothing. Testnet has only 128 seats.
 - **Credit follows the claimant, not the UID.** Losing a UID to pruning, re-registering or changing hotkeys never erases points you've earned.
 - **Who doesn't earn.**
@@ -178,18 +188,20 @@ claimant's alpha = track pool × claimant's points / all points in that track
 - **The script.** We publish the script that computes it from the validators' committed values, so you can recompute your own line.
 - **Appeals.** Open an Issue within 14 days of a ledger. We answer publicly within 7 days.
 
-## Payout
+## Payout schedule
+
+The schedule we intend to follow. Every part is a discretionary gift (see [What an allocation is](#what-an-allocation-is)).
 
 - **The first part,** within 7 days of mainnet start, is **one registration's worth** (or your whole share, if that's smaller). You can use it to register on mainnet: unstake it to TAO for the registration.
-- **The rest** is paid in three equal parts, at 30, 60 and 90 days after mainnet start.
+- **The rest** follows in three equal parts, at 30, 60 and 90 days after mainnet start.
 - **Founding operators.** A founding operator is a claimant who, before mainnet starts:
   - held base on a site for 6 weeks (*proposed value*); and
   - has an accepted finding, or a site with an environment bonus.
 
-  If your first part was less than the burned half of your first mainnet registration, we reimburse the difference after that UID passes its first mainnet capacity test.
+  If your first part was less than the burned half of your first mainnet registration, we intend to give the difference after that UID passes its first mainnet capacity test.
   - The burned half is read from chain and capped at half of one registration's worth.
-  - The reimbursement is valid for 30 days from the opening of registration.
-  - It is paid from the subnet owner's share, not from the pool.
+  - This offer is open for 30 days from the opening of registration.
+  - It comes from the subnet owner's share, not from the pool.
 - **Unclaimed shares.** A share unclaimed 180 days after mainnet start goes to the other node-track claimants, pro rata.
 
 ## Changes

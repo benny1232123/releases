@@ -18,4 +18,6 @@ This repository holds release files, documentation and the testers' site. It has
 
 **Testnet only.** Running these builds doesn't earn real TAO. The bug bounty's rewards are described in [BOUNTY.md](BOUNTY.md).
 
+**Terms and privacy.** Using the site, the claim page or the findings sandbox means accepting the [Terms of Service](https://transitfabric.xyz/terms.html) and the [Privacy Policy](https://transitfabric.xyz/privacy.html). You must be 18 or older, or the age of majority where you live, whichever is higher. The site sets no cookies, runs no analytics and loads nothing from third parties.
+
 The command-line tools are still named `bwos` in this testnet. BandwidthOS is the company that develops the stack, and it's one of the network's resellers.

@@ -12,6 +12,12 @@
 //                  fields' canonical JSON (lib/finding.mjs), and this worker checks the signature
 //                  the way the claim page and tools/verify-claim.mjs do (lib/sig.mjs).
 //
+// Both need the age attestation (lib/terms.mjs): the form field `age_attested` ticked and
+// `terms_version` naming a published version (for a raw markdown body, the headers
+// X-TF-Age-Attested and X-TF-Terms-Version). Without them the request is refused before any KV
+// access. Stored with the submission: only `{ age_attested: true, terms_version, ts }`, never a
+// date of birth.
+//
 // Maintainers read both with a bearer token: GET /admin/list, /admin/get/<key>,
 // /admin/zip/<receipt>; record a decision with POST /admin/verdict/<receipt>; and replace the
 // registered-accounts list (from the claim Issues and the pass history) with PUT /admin/registered.
@@ -32,6 +38,7 @@ import {
   COMPONENTS, GITHUB_RE, MAX_OPEN, OPEN_SEVERITIES, PAGE_CANON_JS, SEVERITIES, canonicalFinding, dateAccepted,
   fieldProblems, findingMessage, normalizeField,
 } from '../lib/finding.mjs';
+import { ATTESTED_VALUES, FORM_ATTESTATION, PRIVACY_URL, TERMS_URL, TERMS_VERSION, TERMS_VERSIONS } from '../lib/terms.mjs';
 
 const MAX_MD = 1024 * 1024;           // 1 MiB of markdown
 const MAX_ZIP = 10 * 1024 * 1024;     // 10 MiB zip attachment
@@ -183,15 +190,36 @@ async function admit(request, env, route, types) {
   return { bucket, ctype, body };
 }
 
+/**
+ * The age attestation a request carries: `{ attestation }` when the box was ticked and a published
+ * terms version named, or `{ error }`. Only these three values are ever stored; no date of birth.
+ */
+function readAttestation(ticked, version, now) {
+  const t = typeof ticked === "string" ? ticked.trim().toLowerCase() : "";
+  if (!ATTESTED_VALUES.includes(t)) {
+    return { error: `confirm the age attestation: ${FORM_ATTESTATION} (form field age_attested=yes)` };
+  }
+  const v = typeof version === "string" ? version.trim() : "";
+  if (!TERMS_VERSIONS.includes(v)) {
+    return { error: `name the Terms and Privacy Policy version you accept (form field terms_version=${TERMS_VERSION}); see ${TERMS_URL}` };
+  }
+  return { attestation: { age_attested: true, terms_version: v, ts: now.toISOString() } };
+}
+
 async function handleUpload(request, env, now) {
   const { bucket, ctype, body } = await admit(request, env, "upload", ["multipart/form-data", "text/markdown", "text/plain"]);
   let mdBytes, zipBytes = null, contact = "";
-  if (ctype.startsWith("multipart/form-data")) {
+  const multipart = ctype.startsWith("multipart/form-data");
+  const att = multipart
+    ? readAttestation(body.get("age_attested"), body.get("terms_version"), now)
+    : readAttestation(request.headers.get("X-TF-Age-Attested"), request.headers.get("X-TF-Terms-Version"), now);
+  if (att.error) return json(400, { error: att.error });
+  if (multipart) {
     const file = body.get("file");
     if (!file || typeof file === "string") return json(400, { error: "missing form field 'file' (your markdown)" });
     mdBytes = new Uint8Array(await file.arrayBuffer());
-    const att = body.get("attachment");
-    if (att && typeof att !== "string" && att.size > 0) zipBytes = new Uint8Array(await att.arrayBuffer());
+    const zipFile = body.get("attachment");
+    if (zipFile && typeof zipFile !== "string" && zipFile.size > 0) zipBytes = new Uint8Array(await zipFile.arrayBuffer());
     const c = body.get("contact");
     if (typeof c === "string") contact = c.trim();
   } else {
@@ -221,6 +249,7 @@ async function handleUpload(request, env, now) {
     bytes: mdBytes.length,
     has_attachment: !!zipBytes,
     contact: contact || undefined,
+    attestation: att.attestation,
   };
   await env.SUB.put(`sub:${receivedAt}:${receipt}`, md.text, { metadata: meta });
   if (zipBytes) await env.SUB.put(`zip:${receipt}`, zipBytes);
@@ -265,6 +294,8 @@ async function handleFinding(request, env, now) {
     const v = form.get(k);
     fields[k] = typeof v === "string" ? normalizeField(v) : "";
   }
+  const att = readAttestation(form.get("age_attested"), form.get("terms_version"), now);
+  if (att.error) return json(400, { error: att.error, problems: [att.error] });
   const poc = form.get("poc");
   if (!poc || typeof poc === "string" || poc.size === 0) {
     return json(400, { error: "a proof-of-concept zip is required (form field 'poc')", problems: ["a proof-of-concept attachment is required"] });
@@ -326,7 +357,8 @@ async function handleFinding(request, env, now) {
   const receipt = receiptId();
   const receivedAt = now.toISOString();
   const key = `fnd:${receivedAt}:${receipt}`;
-  const record = { v: 1, receipt, received_at: receivedAt, fields, date, message, digest, signature, verification, tier, poc_bytes: pocBytes.length };
+  const reattest = reg.needs_reattest === true;
+  const record = { v: 1, receipt, received_at: receivedAt, fields, date, message, digest, signature, verification, tier, poc_bytes: pocBytes.length, attestation: att.attestation, needs_reattest: reattest };
   const meta = {
     receipt,
     received_at: receivedAt,
@@ -340,6 +372,8 @@ async function handleFinding(request, env, now) {
     eligibility: tier,
     component: fields.component,
     title: fields.title.replace(/[\u0000-\u001f\u007f]/g, " ").slice(0, 80),
+    attestation: att.attestation,
+    needs_reattest: reattest || undefined,
   };
   await env.SUB.put(`zip:${receipt}`, pocBytes);
   await env.SUB.put(key, JSON.stringify(record), { metadata: meta });
@@ -357,6 +391,7 @@ async function handleFinding(request, env, now) {
     signed_by: fields.address,
     tier,
     note: "Received and signature verified. A first pass checks the reproduction, duplicates and your eligibility tier, then a maintainer reviews it. Quote this receipt to follow up.",
+    ...(reattest ? { needs_reattest: true, reattest_note: "Your registration was signed before the age attestation was added. Sign the current message on https://transitfabric.xyz/claim.html to stay eligible for rewards; nothing you sent is lost." } : {}),
   });
 }
 
@@ -370,7 +405,8 @@ function parseRegistered(body) {
     if (!id) return { error: `entry ${i}: no valid account id or ss58 address` };
     if (!GITHUB_RE.test(String(a.github || ""))) return { error: `entry ${i}: github is not a GitHub username` };
     if (!["verified", "open"].includes(a.tier)) return { error: `entry ${i}: tier must be verified or open` };
-    accounts[id] = { github: a.github.toLowerCase(), tier: a.tier };
+    if (a.needs_reattest !== undefined && typeof a.needs_reattest !== "boolean") return { error: `entry ${i}: needs_reattest must be true or false` };
+    accounts[id] = { github: a.github.toLowerCase(), tier: a.tier, ...(a.needs_reattest ? { needs_reattest: true } : {}) };
   }
   return { accounts };
 }
@@ -477,7 +513,15 @@ button{margin-top:18px;margin-right:8px;padding:10px 18px;border:0;border-radius
 button:disabled{opacity:.5;cursor:default}
 pre{white-space:pre-wrap;word-break:break-all;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:12px;font-size:.9rem}
 .warn{border-left:4px solid var(--accent);padding-left:12px}.bad{color:var(--bad)}.ok{color:var(--ok)}
+label.check{display:flex;gap:10px;align-items:flex-start;font-weight:600}label.check input{margin-top:5px;flex:none}
+footer{max-width:720px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:.9rem}
 </style>`;
+
+/** The attestation box and the terms version, the same on both forms. */
+const ATTEST_FIELDS = `<label class="check" for="age_attested"><input id="age_attested" name="age_attested" type="checkbox" value="yes" required><span>${FORM_ATTESTATION} (<a href="${TERMS_URL}">Terms</a>, <a href="${PRIVACY_URL}">Privacy Policy</a>, version ${TERMS_VERSION}).</span></label>
+<input type="hidden" name="terms_version" value="${TERMS_VERSION}">`;
+
+const FOOTER = `<footer>Testnet subnet 611 only. <a href="${TERMS_URL}">Terms</a> · <a href="${PRIVACY_URL}">Privacy</a> · <a href="https://transitfabric.xyz/bounty.html">Bounty rules</a></footer>`;
 
 const PAGE = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -499,19 +543,21 @@ ${STYLE}</head><body><main>
 <input id="attachment" name="attachment" type="file" accept=".zip,application/zip">
 <label for="contact">Contact (optional: a Discord name or email, if you want a reply)</label>
 <input id="contact" name="contact" type="text" maxlength="200">
+${ATTEST_FIELDS}
 <button type="submit">Upload</button>
 </form>
 <div class="card" id="out" hidden><strong>Result</strong><pre id="res"></pre></div>
 <div class="card"><strong>For agents and scripts</strong>
-<pre>curl -sS -F file=@finding.md https://submit.transitfabric.xyz/upload
+<pre>curl -sS -F file=@finding.md -F age_attested=yes -F terms_version=${TERMS_VERSION} https://submit.transitfabric.xyz/upload
 # optional: -F attachment=@repro.zip -F contact=yourname</pre>
+<p class="muted"><code>age_attested=yes</code> confirms: ${FORM_ATTESTATION}. Without it the upload is refused.</p>
 <p class="muted">The reply is JSON with a receipt ID. Limit: ${PER_IP_PER_DAY} uploads per day per address. For the signed form from a script, see <a href="/finding">/finding</a>.</p></div>
 </main><script>
 document.getElementById('f').addEventListener('submit',async e=>{e.preventDefault();
 const out=document.getElementById('out'),res=document.getElementById('res');out.hidden=false;res.textContent='Uploading…';
 try{const r=await fetch('/upload',{method:'POST',body:new FormData(e.target)});res.textContent=await r.text();}
 catch(err){res.textContent='Upload failed: '+err.message;}});
-</script></body></html>`;
+</script>${FOOTER}</body></html>`;
 
 const opts = (list) => list.map((v) => `<option value="${v}">${v}</option>`).join("");
 
@@ -539,6 +585,7 @@ ${STYLE}</head><body><main>
 <label for="actual">Actual</label><textarea id="actual" name="actual" required></textarea>
 <label for="details">Impact, simulator scenario, suggested fix (optional, markdown)</label><textarea id="details" name="details"></textarea>
 <label for="poc">Proof of concept (.zip, up to 10 MB: the script, sim scenario or logs that reproduce it)</label><input id="poc" name="poc" type="file" accept=".zip,application/zip" required>
+${ATTEST_FIELDS}
 <button type="button" id="prep">1. Prepare the message</button>
 </form>
 <div class="card" id="sigcard" hidden>
@@ -556,7 +603,9 @@ ${STYLE}</head><body><main>
 <pre>curl -sS https://submit.transitfabric.xyz/finding \\
   -F github=... -F address=... -F title=... -F version=... -F severity=... \\
   -F eligibility=... -F component=... -F 'repro=<repro.txt' -F expected=... -F actual=... \\
-  -F 'details=<details.md' -F poc=@repro.zip -F date=YYYY-MM-DD -F signature=0x...</pre>
+  -F 'details=<details.md' -F poc=@repro.zip -F date=YYYY-MM-DD -F signature=0x... \\
+  -F age_attested=yes -F terms_version=${TERMS_VERSION}</pre>
+<p class="muted"><code>age_attested=yes</code> confirms: ${FORM_ATTESTATION}. Without it the finding is refused.</p>
 <p class="muted">A wrong signature gets a 401 that names the exact message the server expected.</p></div>
 </main><script>
 (function(){'use strict';
@@ -570,6 +619,7 @@ function fields(){var f={};['github','address','title','version','severity','eli
 $('prep').addEventListener('click',async function(){
   var file=$('poc').files[0];
   if(!file){alert('Attach the proof-of-concept zip first.');return;}
+  if(!$('age_attested').checked){alert('Confirm the age attestation first.');return;}
   var f=fields();
   if(!/^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(f.github)||!/^[1-9A-HJ-NP-Za-km-z]{40,60}$/.test(f.address)){alert('Check your GitHub username and ss58 address first.');return;}f.poc_sha256=await sha(await file.arrayBuffer());
   var digest=await sha(new TextEncoder().encode(canonicalFinding(f)));
@@ -604,7 +654,7 @@ $('send').addEventListener('click',async function(){
   catch(e){res.textContent='Submit failed: '+e.message;}
 });
 })();
-</script></body></html>`;
+</script>${FOOTER}</body></html>`;
 
 const PAGE_CSP = "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'self'; form-action 'self'; base-uri 'none'";
 
@@ -635,7 +685,7 @@ async function route(request, env, now) {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Headers": "Content-Type, X-TF-Age-Attested, X-TF-Terms-Version",
         "Access-Control-Max-Age": "86400",
       },
     });

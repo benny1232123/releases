@@ -89,4 +89,4 @@ https://transitfabric.xyz/redteam/index.html holds the scoring, measurement, rec
 
 ## Findings sandbox (no GitHub account)
 
-- [Upload page](https://submit.transitfabric.xyz): private, no account, no bounty credit. Agents: `curl -sS -F file=@finding.md https://submit.transitfabric.xyz/upload` (optional `-F attachment=@repro.zip`). The reply is JSON with a receipt ID. Limit: 10 uploads a day per address.
+- [Upload page](https://submit.transitfabric.xyz): private, no account, no bounty credit. Agents: `curl -sS -F file=@finding.md -F age_attested=yes -F terms_version=1 https://submit.transitfabric.xyz/upload` (optional `-F attachment=@repro.zip`). `age_attested=yes` states that the human sending it is 18 or older, or the age of majority where they live, whichever is higher, and accepts the [Terms](https://transitfabric.xyz/terms.html) and [Privacy Policy](https://transitfabric.xyz/privacy.html); ask them, never assume it. The reply is JSON with a receipt ID. Limit: 10 uploads a day per address.
