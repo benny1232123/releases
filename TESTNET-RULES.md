@@ -1,14 +1,12 @@
-# Testnet rewards: proposed rules
+# Testnet rewards: rules
 
-> **Proposed, open for feedback until Tuesday 17 November 2026, 12:00 UTC.** The rules become final then, and we publish the final version here with a list of what changed. If substantive feedback arrives late, we may extend the deadline and say so here.
+> **Final, version 2.1, effective 2026-11-17.** The rules were proposed on 14 November 2026 and open for feedback until 17 November, 12:00 UTC. What changed since the proposal is listed under [What changed from the proposal](#what-changed-from-the-proposal-2026-11-14). Any later change follows the [Changes](#changes) rules.
 >
-> **How to give feedback:**
+> **Questions, or a case these rules don't cover:**
 > - open a [Testnet rules feedback](https://github.com/transitfabric/releases/issues/new?template=rules-feedback.yml) Issue; or
 > - upload a note to the [findings sandbox](https://submit.transitfabric.xyz) if you have no GitHub account.
->
-> Point at the section you're commenting on. Numbers marked *proposed value* are the ones we most want views on.
 
-**Proposed rules, version 2.1** (2.1, 2026-11-17: adds the owner-forwarder measurement correction under Fairness rules; it only raises credit). This page will be the only place that says what testnet work may earn. Other pages link here and don't restate it.
+**Rules, version 2.1** (2.1, 2026-11-17: adds the owner-forwarder measurement correction under Fairness rules; it only raises credit). This page is the only place that says what testnet work may earn. Other pages link here and don't restate it.
 
 ## In short
 
@@ -70,10 +68,10 @@ Points are counted per **site** each week (140 windows), then summed per claiman
 
 A site holds base for the week when all four of these hold:
 - **Uptime.** It was up in at least 90% of the week's non-void windows. From 50% to 90%, it earns 5 points instead.
-- **A capacity test.** It passed at least one capacity test, verified at 20 Mb/s or more (*proposed value*), or 5 Mb/s for a router or a node behind NAT.
+- **A capacity test.** It passed at least one capacity test, verified at 20 Mb/s or more, or 5 Mb/s for a router or a node behind NAT.
   - A site counts only with a live binding and consent, a fresh signed declaration, and a BGP session to another UID's node.
 - **Honest declarations.** In no window was its verified capacity under half of what it declared. Verified capacity here is the figure after any measurement correction (Fairness rules, "Measurement corrections").
-- **A current release.** It ran the current release, or the previous one for at most 48 hours after a new one.
+- **A current release.** It ran the current release, or the previous one for at most 48 hours after a new one. This counts only once it is measured: nodes report a signed version that validators publish per node and window. Until then base points don't depend on the release, and the fast-upgrade role isn't scored. The reported version is self-declared, so it counts for testnet points only, never for scoring or emissions.
 
 ### Diversity: up to 6 points per site
 
@@ -97,7 +95,8 @@ D = 6 / n_asn
 | Another platform we list as wanted (for example an ARM board or a new OpenWrt target) | 5 |
 | Datacenter VM | 0 |
 
-- **How the bonus scales.** The first 10 sites (*proposed value*) of a kind in a week get the bonus in full. Beyond that, each gets it scaled by 10 / n.
+- **Why these bonuses.** The home, NAT and router bonuses reward early testnet coverage and engagement. They taper as those sites reach their targets, and mainnet favours datacenter capacity.
+- **How the bonus scales.** The first 10 sites of a kind in a week get the bonus in full. Beyond that, each gets it scaled by 10 / n.
 - **Evidence for a router:**
   - the `ubus call system board` output;
   - a photo showing the claim ID;
@@ -110,7 +109,7 @@ D = 6 / n_asn
 | Role | Points a week | Condition |
 |---|---|---|
 | Open peer | 4 | Peered with nodes of at least 2 other claimants during their first 14 days |
-| Fast upgrade | 3 | On a new release within 24 hours of its announcement |
+| Fast upgrade | 3 | On a new release within 24 hours of its announcement (scored only once versions are measured; see "A current release") |
 
 A data-server role comes with phase F. Solvers have their own track.
 
@@ -128,7 +127,7 @@ A data-server role comes with phase F. Solvers have their own track.
 - **Limits per claimant.** One claimant earns base on at most:
   - one single-node site;
   - one router site;
-  - 5 fleet sites (*proposed value*);
+  - 5 fleet sites;
   - and no more than 2 sites in one ASN.
 
   Further sites earn nothing.
@@ -168,7 +167,7 @@ claimant's alpha = track pool × claimant's points / all points in that track
 
 - **Solvers.** You earn 1 point for each window your table is fetched on time and graded at least 2% better than the reference, plus 1 point for the best table of the window.
 - **Findings.**
-  - Points use the the [bounty page](bounty.html) tiers. Reports sent before the bounty opens count, in order of receipt.
+  - Points use the [bounty page](bounty.html) tiers. Reports sent before the bounty opens count, in order of receipt.
   - The first valid private report of an exploit earns its tier, even if your own nodes profited from it first. Only that profit is removed.
 - **Docs and onboarding.** Each of these earns 5 points:
   - a merged doc fix;
@@ -210,7 +209,7 @@ claimant's alpha = track pool × claimant's points / all points in that track
 - **The first part,** within 7 days of mainnet start, is **one registration's worth** (or your whole share, if that's smaller). You can use it to register on mainnet: unstake it to TAO for the registration.
 - **The rest** follows in three equal parts, at 30, 60 and 90 days after mainnet start.
 - **Founding operators.** A founding operator is a claimant who, before mainnet starts:
-  - held base on a site for 6 weeks (*proposed value*); and
+  - held base on a site for 6 weeks; and
   - has an accepted finding, or a site with an environment bonus.
 
   If your first part was less than the burned half of your first mainnet registration, we intend to give the difference after that UID passes its first mainnet capacity test.
@@ -227,3 +226,13 @@ claimant's alpha = track pool × claimant's points / all points in that track
 - **Lowering a bonus.** When a kind of site reaches its target, its bonus can be lowered with 7 days' notice.
 - **Versioning.** This page has a version number, and each ledger names the version it used.
 - **Coming later: a location bonus** for sites that add a new country or region. It needs a measured location signal under its own ADR, and it comes with the customer front end. Its rule is published here before it applies.
+
+### What changed from the proposal (2026-11-14)
+
+- **Router nodes (2026-11-14).** Router points, base included, count from the release that adds router measurement.
+- **Environment bonuses taper (2026-11-14).** The home, NAT and router bonuses reward early coverage and engagement, and taper as those sites reach their targets.
+- **What an allocation is (2026-11-16).** Allocations are discretionary rewards, go only to people who may lawfully receive them, and come with no warranty. These rules are part of the [Terms of Service](terms.html).
+- **Age and attestation (2026-11-16).** Claimants must be 18 or older, or the age of majority where they live, and sign an attestation on the claim page. Earlier registrants keep their points but sign again.
+- **A current release (2026-11-16).** It counts, and the fast-upgrade role is scored, only once versions are measured.
+- **Measurement corrections (2026-11-17, version 2.1).** The owner-forwarder correction under Fairness rules. It only raises credit.
+- **Final values (2026-11-17).** The values marked *proposed value* are final as proposed: the 20 Mb/s capacity floor, the first 10 sites of a kind with the full environment bonus, 5 fleet sites per claimant, and 6 weeks of base for a founding operator.

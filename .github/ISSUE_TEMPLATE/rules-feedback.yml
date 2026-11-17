@@ -1,12 +1,12 @@
 name: Testnet rules feedback
-description: Comment on the proposed testnet rewards rules (open until Tuesday 17 November 2026, 12:00 UTC).
+description: Ask about or comment on the testnet rewards rules (final, version 2.1).
 title: "Rules feedback: "
 labels: ["rules-feedback"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reading the [proposed testnet rules](https://transitfabric.xyz/testnet-rules.html). Feedback is open until **Tuesday 17 November 2026, 12:00 UTC**. After that the rules become final, and we publish what changed.
+        Thanks for reading the [testnet rules](https://transitfabric.xyz/testnet-rules.html). They are final (version 2.1, effective 2026-11-17); any later change follows the rules' Changes section. Use this form for a question, a case the rules don't cover, or a suggestion for a future version.
 
         Keep it to one topic per Issue if you can. Never paste private keys, seed phrases or IP addresses. Security problems with the rules (a way to earn points you shouldn't) go through a [private advisory](https://github.com/transitfabric/releases/security/advisories/new), not here.
   - type: dropdown
@@ -15,6 +15,7 @@ body:
       label: Which section?
       options:
         - The pool
+        - What an allocation is
         - Who can earn
         - "Node points: base"
         - "Node points: diversity"
@@ -26,7 +27,7 @@ body:
         - Solvers, findings, docs
         - Fairness rules
         - Ledger and appeals
-        - Payout
+        - Payout schedule
         - Changes
         - Something else
     validations:
