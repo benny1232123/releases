@@ -1,18 +1,20 @@
-# AGENTS.md: Transit Fabric testnet (tester v0.1.0-tester.4)
+# AGENTS.md: Transit Fabric testnet (tester v0.1.0-tester.4.1)
 
 For AI agents working on behalf of a tester. Humans: start at https://transitfabric.xyz/quickstart.html. A shorter index in the llms.txt format is at https://transitfabric.xyz/llms.txt.
 
-Transit Fabric is a Bittensor subnet for a decentralized network fabric, running on **testnet, subnet 611**. This file describes release **v0.1.0-tester.4** as it is today. The command-line tools are still named `bwos`.
+Transit Fabric is a Bittensor subnet for a decentralized network fabric, running on **testnet, subnet 611**. This file describes release **v0.1.0-tester.4.1** as it is today. The command-line tools are still named `bwos`.
 
-**New in tester.4:** a node builds a current validator set at first start (no hand rebuild of the anchor; a solver still starts from a current one), NAT dial-in and validator fetch fixes, and scoring version 1 from testnet block 8,493,120 (about 2026-11-21 11:15 UTC). From tester.3: `bwos doctor --json`, `bwos report` and an agent skill. Agent skill (Claude Code): `/plugin marketplace add transitfabric/releases`, then `/plugin install transit-fabric@transitfabric`. The bounty opens soon. Reports are welcome now, filed the same way.
+**New in tester.4.1:** tester.4.1 is mostly for validators: the subnet owner's on-chain validator allowlist (ADR-0078), parsed from testnet block 8,481,240 (about 2026-11-19 19:40 UTC, report-only) and in force from block 8,495,640 (about 2026-11-21 19:40 UTC), and two-source chain reads that tolerate a lagging source. For anyone: shadow mode (`bwos-validator shadow`) recomputes the validators' weights from public data; a `MISMATCH` is bounty-eligible (https://transitfabric.xyz/redteam/shadow-validator.html). Nodes need no change; upgrading `fabric-sense` before block 8,495,640 keeps a node's anchor rebuild identical to the validators' chain-only set.
+
+**From tester.4:** a node builds a current validator set at first start (no hand rebuild of the anchor; a solver still starts from a current one), NAT dial-in and validator fetch fixes, and scoring version 1 from testnet block 8,493,120 (about 2026-11-21 11:15 UTC). From tester.3: `bwos doctor --json`, `bwos report` and an agent skill. Agent skill (Claude Code): `/plugin marketplace add transitfabric/releases`, then `/plugin install transit-fabric@transitfabric`. The bounty opens soon. Reports are welcome now, filed the same way.
 
 ## Where things are
 
-- Release and downloads: https://github.com/transitfabric/releases/releases/tag/v0.1.0-tester.4. Binaries are for Linux x86_64 and aarch64 (`bwos-node`, `bwos`, `bwos-probe`, `bwos-solver`, `bwos-validator`, `minimal_solver`), plus a no-root container image, router images and `install.sh`. The `bwos` CLI also ships for macOS, and the link page for any OS.
+- Release and downloads: https://github.com/transitfabric/releases/releases/tag/v0.1.0-tester.4.1. Binaries are for Linux x86_64 and aarch64 (`bwos-node`, `bwos`, `bwos-probe`, `bwos-solver`, `bwos-validator`, `minimal_solver`), plus a no-root container image, router images and `install.sh`. The `bwos` CLI also ships for macOS, and the link page for any OS.
 - Checksums: the `SHA256SUMS` asset on the release. `MANIFEST.json` has the commit and the file list. `latest.json` (a release asset) lists the version, every asset's sha256 and url, the hash of `SHA256SUMS` and the validator set's `validator_set_not_after_block`. It comes from the same place as the files, so it does not replace comparing `SHA256SUMS` with the announced hash.
 - Quick start: https://transitfabric.xyz/quickstart.html. Also the `QUICKSTART.md` and `testers.md` assets. Read the quick start before you act.
 - Known limits: https://transitfabric.xyz/known-limits.html.
-- Red-team pack: https://transitfabric.xyz/redteam/index.html.
+- Red-team pack: https://transitfabric.xyz/redteam/index.html. Shadow validator guide: https://transitfabric.xyz/redteam/shadow-validator.html (read-only; never give it a hotkey or wallet, it refuses them).
 
 ## Before you run anything
 
