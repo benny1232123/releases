@@ -28,6 +28,7 @@ btcli wallet transfer --wallet-name tf-test --network test --dest &lt;hotkey SS5
 </table></div>
 <h2>4. Keys and consent, on each node</h2>
 <p>Path B shown. Path A uses <code>/etc/bwos</code> and root.</p>
+<p><strong>Upgrading a Docker node (path B):</strong> recreate the container, don't just restart it. Its command line holds <code>--probe-peer</code> and the three store URL lists from the <code>network.json</code> you installed from, and a restart on a new image keeps them. Put the new release's <code>network.json</code> in the state dir, remove the container and start it on the new image with the same command, except one <code>--probe-peer</code> per entry of <code>probe_peers</code> and <code>--directory-url</code>, <code>--table-url</code> and <code>--snapshot-url</code> set to <code>validator_urls</code> joined by commas.</p>
 <pre><code>./bwos-node keygen -key keys/node.key
 ./bwos-node wg-bind -key keys/node.key -wg-key keys/wg.key -out keys/wg-binding.json -not-before 1 -not-after 100000000 &gt;/dev/null
 ./bwos-node link-url -key keys/node.key -base http://localhost:8000/ -hotkey &lt;hotkey SS58&gt; -netuid 611 -not-after 100000000 -out keys/consent.json</code></pre>
