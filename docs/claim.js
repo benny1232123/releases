@@ -124,11 +124,25 @@
       $('check').className = 'bad';
       return;
     }
-    var sig = '0x' + hex.toLowerCase(), bytes = U.stringToU8a(msg), valid = false;
-    [U.u8aWrapBytes(bytes), bytes].forEach(function (data) {
-      try { if (C.signatureVerify(data, sig, addr).isValid) valid = true; } catch (e) { /* not a signature for this key type */ }
-    });
-    showClaim(msg, addr, sig, valid, 'The signature does not verify here. Do not send it. Sign exactly the message in step 4, with the key of the address in the message.');
+    var sig = '0x' + hex.toLowerCase();
+    // btcli signs the bare message; a wallet signs <Bytes>message</Bytes>. Accept either.
+    function verifies(text) {
+      var bytes = U.stringToU8a(text), ok = false;
+      [U.u8aWrapBytes(bytes), bytes].forEach(function (data) {
+        try { if (C.signatureVerify(data, sig, addr).isValid) ok = true; } catch (e) { /* not a signature for this key type */ }
+      });
+      return ok;
+    }
+    var valid = verifies(msg), bad = '';
+    if (!valid) {
+      // The message carries today's UTC date. A signature made before or after midnight UTC is for another day's message.
+      var day = 86400000, now = Date.now(), other = [now - day, now + day].map(function (t) { return new Date(t).toISOString().slice(0, 10); })
+        .filter(function (d) { return verifies(msg.replace('date=' + today() + ',', 'date=' + d + ',')); })[0];
+      bad = other
+        ? 'This signature is for the message dated ' + other + ', but today (UTC) the message is dated ' + today() + '. Copy the btcli command again and sign once more.'
+        : 'The signature does not verify for this message and address. Do not send it. Check two things: (1) the "Signer address" btcli printed must be exactly the address in step 2 (--no-use-hotkey signs with your coldkey; if you typed a hotkey\'s address, sign with --use-hotkey --hotkey <name> instead); (2) you signed the message exactly as shown in step 4, after filling in steps 1 to 3. If you changed anything, copy the command again.';
+    }
+    showClaim(msg, addr, sig, valid, bad);
   });
 
   $('copy').addEventListener('click', async function () {
